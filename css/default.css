@@ -2,7 +2,7 @@ body
 {
     background-color: #EBEBEB;
     margin: 15px 40px 40px 40px;
-    font: 13px/20px normal Helvetica, Arial, sans-serif;
+    font: 14px/20px normal Helvetica, Arial, sans-serif;
     color: #4F5155;
 }
 
@@ -30,15 +30,15 @@ body
     margin: 0 25px 25px 25px;  
 }
 
-#body h2
+#body h3
 {
     color: #4B78A1;
-    font-weight: normal;
 }
 
 #body p
 {
-    padding-left: 15px;   
+    margin-left: 10px;   
+    padding-left: 5px;
 }
 
 #header
@@ -46,6 +46,7 @@ body
     width: 800px;
     margin: 0 auto 0 auto;
     text-align: center;
+    color: #4b78a1;
 }
 
 #wrapper
@@ -90,6 +91,8 @@ body
     font-weight: bold;
     color: #000;
     /*color: #A6C4E1; */
+    transition: color 0.5s;
+    -webkit-transition: color 0.5s;
 }
 
 #nav ul li a.active
@@ -101,6 +104,17 @@ body
 #nav ul li a:hover
 {
     color: #4B78A1;   
+}
+
+.inner
+{
+    margin-left: 15px;
+}
+
+a
+{
+    text-decoration: none;
+    color: #4B78A1;
 }
 
 #footer
