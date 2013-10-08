@@ -3,6 +3,7 @@
     <head>
         <title>Radford Child Development</title>
         <link rel="stylesheet" type="text/css" href="/css/default.css">
+        <script type="text/javascript" src="js/switchCSS.js"></script>
         <meta charset="utf-8">
     </head>
     <body>
@@ -20,18 +21,19 @@
             <div id="content">
                 <h1>How to Donate</h1>
                 <div id="body">
-                    <h2>Community Foundation of the New River Valley</h2>
+                    <h3>Community Foundation of the New River Valley</h3>
                     <p>
                         Radford Child Development, Inc. is pleased to accept donations through a partnership with the Community Foundation of the New River Valley, a public not-for-profit organization benefiting the New River Valley. 
 For more information on the Foundation, visit <a href="https://cfnrv.org">cfnrv.org</a>
                     </p>
-                    <h2>How to contribute to Radford Child Development Inc.</h2>
+                    <h3>How to contribute to Radford Child Development Inc.</h3>
                     <p>
                         Contributions via check should be made out to the Community Foundation of the New River Valley with “Radford Child Development” in the notation line and sent to P.O. Box 6009, Christiansburg, VA 24068-6009. 
                     </p>
                     <p>
-                        One-time or ongoing contributions may be made via the Foundation’s website at <a href="https://cfnrv.org/donate">cfnrv.org/donate:</a> Under Donation Designation, select “I would like my donation to benefit a fund” Scroll down to the Childcare, Youth Development and Education category and select the Radford Child Development Inc. Fund.
-                    </p>
+                        One-time or ongoing contributions may be made via the Foundation’s website at <a href="https://cfnrv.org/donate">cfnrv.org/donate</a><br />
+                        Under Donation Designation, select “I would like my donation to benefit a fund” Scroll down to the Childcare, Youth Development and Education category and select the Radford Child Development Inc. Fund.
+                    </p> 
                     <p>
                         Donors wishing to make non-cash gifts such as appreciated stock, or discuss a planned gift may contact the Foundation at 540-381-8999.
                     </p>
@@ -43,6 +45,15 @@ For more information on the Foundation, visit <a href="https://cfnrv.org">cfnrv.
         </div>
         <div id="footer">
             <p>&copy; Radford Child Development Inc. 2013</p>
+        </div>
+        <div id="theme-selector">
+            <form>
+                Choose Theme: 
+                <select onchange="switchCSS(this)">
+                    <option value="default">Default</option>
+                    <option value="blue">Blue</option>
+                </select>
+            </form>
         </div>
     </body>
 </html>

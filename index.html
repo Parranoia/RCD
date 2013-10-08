@@ -2,7 +2,8 @@
 <html>
     <head>
         <title>Radford Child Development</title>
-        <link rel="stylesheet" type="text/css" href="/css/default.css">
+        <link rel="stylesheet" type="text/css" href="css/default.css">
+        <script type="text/javascript" src="js/switchCSS.js"></script>
         <meta charset="utf-8">
     </head>
     <body>
@@ -22,11 +23,11 @@
                 <img src="/images/child.jpg" align="middle" />
                 <!--<h3>Why We Need You Now!</h3>-->
                 <div id="body">
-                    <h2>Mission Statement</h2>
+                    <h3>Mission Statement</h3>
                     <p>
                         To develop and/or support excellent, nationally accredited child development program(s) in Radford that embodies the best practices of early childhood care and education. 
                     </p>
-                    <h2>Results of our Needs Assessment</h2>
+                    <h3>Results of our Needs Assessment</h3>
                     <p>
                         In order to evaluate the need for a quality child care in Radford, we conducted a needs assessment with members of the Radford community this year. We sought to measure the discrepancy between the current condition and the desired condition. We determined and documented a critical need in quality child care in Radford.
                     </p>
@@ -38,6 +39,15 @@
         </div>
         <div id="footer">
             <p>&copy; Radford Child Development Inc. 2013</p>
+        </div>
+        <div id="theme-selector">
+            <form>
+                Choose Theme: 
+                <select onchange="switchCSS(this)">
+                    <option value="default">Default</option>
+                    <option value="blue">Blue</option>
+                </select>
+            </form>
         </div>
     </body>
 </html>
