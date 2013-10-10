@@ -121,3 +121,7 @@ a
     font-size: 10px;
     margin: 0 auto 0 auto;   
 }
+#instructions img
+{
+	width: 700px;
+}
