@@ -49,6 +49,15 @@ body
     color: #4b78a1;
 }
 
+#header img
+{
+    width: 800px;
+    margin-bottom: -20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
 #wrapper
 {
     border: 1px solid #D0D0D0;
