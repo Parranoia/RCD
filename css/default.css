@@ -6,41 +6,6 @@ body
     color: #4F5155;
 }
 
-#content h1
-{
-    color: #4b78a1;
-    background-color: transparent;
-    /*border-bottom: 1px solid #D0D0D0;*/
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0 0 14px 0;
-    padding: 14px 15px 10px 15px;
-    text-align: center;
-}
-
-#content img
-{
-    display: block;
-    margin: 0 auto 0 auto;
-    border-radius: 10px;
-}
-
-#body
-{
-    margin: 0 25px 25px 25px;  
-}
-
-#body h3
-{
-    color: #4B78A1;
-}
-
-#body p
-{
-    margin-left: 10px;   
-    padding-left: 5px;
-}
-
 #header
 {
     width: 800px;
@@ -115,15 +80,45 @@ body
     color: #4B78A1;   
 }
 
-.inner
-{
-    margin-left: 15px;
-}
-
 a
 {
     text-decoration: none;
     color: #4B78A1;
+}
+
+#content h1
+{
+    color: #4b78a1;
+    background-color: transparent;
+    /*border-bottom: 1px solid #D0D0D0;*/
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 14px 0;
+    padding: 14px 15px 10px 15px;
+    text-align: center;
+}
+
+#content img
+{
+    display: block;
+    margin: 0 auto 0 auto;
+    border-radius: 10px;
+}
+
+#body
+{
+    margin: 0 25px 25px 25px;  
+}
+
+#body h3
+{
+    color: #4B78A1;
+}
+
+#body p
+{
+    margin-left: 10px;   
+    padding-left: 5px;
 }
 
 #footer
@@ -132,4 +127,40 @@ a
     text-align: center;
     font-size: 10px;
     margin: 0 auto 0 auto;
+}
+
+#donate td
+{
+    padding-left: 15px;
+    padding-right: 15px;
+    vertical-align: text-top;
+}
+
+#donate th
+{
+    padding: 0px;
+}
+
+td.donate
+{
+    text-align: center;
+}
+
+a.donate
+{
+    font-weight: bold;
+    color: #FFF;
+    padding: 10px 15px 10px 15px;
+    background-color: #4B78A1;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#nav a.donate
+{
+    float: right;
+    position: relative;
+    top: -45px;
+    right: 10px;
 }
