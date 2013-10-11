@@ -164,3 +164,8 @@ a.donate
     top: -45px;
     right: 10px;
 }
+
+#instructions img
+{
+	width: 700px;
+}
