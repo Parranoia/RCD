@@ -150,6 +150,19 @@ td.donate
     text-align: center;
 }
 
+#donate-instruction
+{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: center;   
+}
+
+#donate-instruction a.donate
+{
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
 a.donate
 {
     font-weight: bold;
