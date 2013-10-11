@@ -1,6 +1,6 @@
 body
 {
-    background-color: #C1DFE8;
+    background-color: #cc833b;
     margin: 15px 40px 40px 40px;
     font: 14px/20px normal Helvetica, Arial, sans-serif;
     color: #4F5155;   
@@ -11,7 +11,7 @@ body
     width: 800px;
     margin: 0 auto 0 auto;
     text-align: center;
-    color: #424242;
+    color: #FFF;
 }
 
 #header img
@@ -26,9 +26,6 @@ body
 #wrapper
 {
     border: 1px solid #D0D0D0;
-    -webkit-box-shadow: 0 0 8px #D0D0D0;
-    -moz-box-shadow: 0 0 8px #D0D0D0;
-    box-shadow: 0 0 8px #D0D0D0;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -76,24 +73,24 @@ body
 
 #nav ul li a.active
 {
-    border-bottom: 3px solid #5796B5;
-    /*color: #4B78A1;*/
+    border-bottom: 3px solid #cc833b;
+    /*color: #d9bfce;*/
 }
 
 #nav ul li a:hover
 {
-    color: #5796B5;   
+    color: #cc833b;   
 }
 
 a
 {
     text-decoration: none;
-    color: #4B78A1;
+    color: #CD7F32;
 }
 
 #content h1
 {
-    color: #4B78A1;
+    color: #CD7F32;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
@@ -116,7 +113,7 @@ a
 
 #body h3
 {
-    color: #4B78A1;
+    color: #CD7F32;
 }
 
 #body p
@@ -151,25 +148,12 @@ td.donate
     text-align: center;
 }
 
-#donate-instruction
-{
-    padding-bottom: 20px;
-    padding-top: 20px;
-    text-align: center;   
-}
-
-#donate-instruction a.donate
-{
-    padding-right: 10%;
-    padding-left: 10%;
-}
-
 a.donate
 {
     font-weight: bold;
     color: #FFF;
     padding: 10px 15px 10px 15px;
-    background-color: #4B78A1;
+    background-color: #CD7F32;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;

@@ -1,6 +1,6 @@
 body
 {
-    background-color: #FF9999;
+    background-color: #ebd8e3;
     margin: 15px 40px 40px 40px;
     font: 14px/20px normal Helvetica, Arial, sans-serif;
     color: #4F5155;   
@@ -76,24 +76,24 @@ body
 
 #nav ul li a.active
 {
-    border-bottom: 3px solid #5796B5;
-    /*color: #4B78A1;*/
+    border-bottom: 3px solid #ebd8e3;
+    /*color: #d9bfce;*/
 }
 
 #nav ul li a:hover
 {
-    color: #5796B5;   
+    color: #ebd8e3;   
 }
 
 a
 {
     text-decoration: none;
-    color: #4B78A1;
+    color: #a58598;
 }
 
 #content h1
 {
-    color: #4B78A1;
+    color: #a58598;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
@@ -116,7 +116,7 @@ a
 
 #body h3
 {
-    color: #4B78A1;
+    color: #a58598;
 }
 
 #body p
@@ -138,6 +138,7 @@ a
     padding-left: 15px;
     padding-right: 15px;
     vertical-align: text-top;
+    width: 45%;
 }
 
 #donate th
@@ -153,9 +154,9 @@ td.donate
 a.donate
 {
     font-weight: bold;
-    color: #FFF;
+    color: #424242;
     padding: 10px 15px 10px 15px;
-    background-color: #4B78A1;
+    background-color: #ebd8e3;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;

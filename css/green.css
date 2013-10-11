@@ -76,24 +76,24 @@ body
 
 #nav ul li a.active
 {
-    border-bottom: 3px solid #5796B5;
+    border-bottom: 3px solid #CCFF99;
     /*color: #4B78A1;*/
 }
 
 #nav ul li a:hover
 {
-    color: #5796B5;   
+    color: #CCFF99;   
 }
 
 a
 {
     text-decoration: none;
-    color: #4B78A1;
+    color: #7b9d5c;
 }
 
 #content h1
 {
-    color: #4B78A1;
+    color: #7b9d5c;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
@@ -116,7 +116,7 @@ a
 
 #body h3
 {
-    color: #4B78A1;
+    color: #7b9d5c;
 }
 
 #body p
@@ -138,6 +138,7 @@ a
     padding-left: 15px;
     padding-right: 15px;
     vertical-align: text-top;
+    width: 45%;
 }
 
 #donate th
@@ -153,9 +154,9 @@ td.donate
 a.donate
 {
     font-weight: bold;
-    color: #FFF;
+    color: #424242;
     padding: 10px 15px 10px 15px;
-    background-color: #4B78A1;
+    background-color: #CCFF99;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
