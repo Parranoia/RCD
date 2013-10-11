@@ -174,3 +174,16 @@ a.donate
 {
 	width: 700px;
 }
+
+#left-column
+{
+    width: 45%;   
+}
+
+#right-column
+{
+    position: relative;
+    top: -125px;
+    float: right;
+    width: 45%;   
+}

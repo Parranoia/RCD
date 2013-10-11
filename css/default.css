@@ -67,6 +67,7 @@ body
     /*color: #A6C4E1; */
     transition: color 0.5s;
     -webkit-transition: color 0.5s;
+    -moz-transition: color 0.5s;
 }
 
 #nav ul li a.active
@@ -182,4 +183,17 @@ a.donate
 #instructions img
 {
 	width: 700px;
+}
+
+#left-column
+{
+    width: 45%;   
+}
+
+#right-column
+{
+    position: relative;
+    top: -125px;
+    float: right;
+    width: 45%;   
 }
