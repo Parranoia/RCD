@@ -125,9 +125,17 @@ a
 #footer
 {
     width: 800px;
-    text-align: center;
-    font-size: 10px;
+    clear: both; 
+    padding-top: -200px;
     margin: 0 auto 0 auto;
+    position: relative;
+    top: -80px;
+}
+
+#footer p
+{
+    font-size: 10px;
+    text-align: center;
 }
 
 #donate td
