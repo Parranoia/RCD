@@ -33,14 +33,14 @@ body
     -moz-border-radius: 10px;
     border-radius: 10px;
     width: 800px;
-    margin: 25px auto 25px auto;
+    margin: 25px auto 0 auto;
     background: #FFF;
 }
 
 #nav
 {
     width: 100%;
-    height: 100%;
+    height: 46px;
     border-bottom: 1px solid #D0D0D0;
 }
 
@@ -87,6 +87,11 @@ a
     color: #4B78A1;
 }
 
+#content
+{
+    width: 100%;
+}
+
 #content h1
 {
     color: #4b78a1;
@@ -94,7 +99,6 @@ a
     /*border-bottom: 1px solid #D0D0D0;*/
     font-size: 24px;
     font-weight: bold;
-    margin: 0 0 14px 0;
     padding: 14px 15px 10px 15px;
     text-align: center;
 }
@@ -124,8 +128,7 @@ a
 
 #footer
 {
-    width: 800px;
-    clear: both; 
+    width: 800px; 
     padding-top: -200px;
     margin: 0 auto 0 auto;
 }
@@ -193,13 +196,18 @@ a.donate
 
 #left-column
 {
-    width: 45%;   
+    width: 50%; 
+    float: left;
 }
 
 #right-column
 {
-    position: relative;
-    top: -125px;
-    float: right;
-    width: 45%;   
+    width: 50%;
+    float: right;   
+}
+
+.clear
+{
+    clear: both;  
+    overflow: hidden;
 }
