@@ -6,7 +6,7 @@ body
     color: #4F5155;
 }
 
-#header
+div #header
 {
     width: 800px;
     margin: 0 auto 0 auto;
@@ -20,6 +20,7 @@ body
     margin-bottom: -20px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
+    -o-border-radius: 10px;
     border-radius: 10px;
 }
 
@@ -28,9 +29,11 @@ body
     border: 1px solid #D0D0D0;
     -webkit-box-shadow: 0 0 8px #D0D0D0;
     -moz-box-shadow: 0 0 8px #D0D0D0;
+    -o-box-shadow: 0 0 8px #D0D0D0;
     box-shadow: 0 0 8px #D0D0D0;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
+    -o-border-radius: 10px;
     border-radius: 10px;
     width: 800px;
     margin: 25px auto 0 auto;
@@ -47,7 +50,7 @@ body
 #nav ul
 {
     list-style: none;
-    padding-left: 0px;
+    padding-left: 0;
 }
 
 #nav ul li
@@ -64,16 +67,15 @@ body
     font-size: 16px;
     font-weight: bold;
     color: #000;
-    /*color: #A6C4E1; */
     transition: color 0.5s;
     -webkit-transition: color 0.5s;
     -moz-transition: color 0.5s;
+    -o-transition: color 0.5s;
 }
 
-#nav ul li a.active
+.active
 {
     border-bottom: 3px solid #4B78A1;
-    /*color: #4B78A1;*/
 }
 
 #nav ul li a:hover
@@ -92,11 +94,10 @@ a
     width: 100%;
 }
 
-#content h1
+h1
 {
     color: #4b78a1;
     background-color: transparent;
-    /*border-bottom: 1px solid #D0D0D0;*/
     font-size: 24px;
     font-weight: bold;
     padding: 14px 15px 10px 15px;
@@ -115,7 +116,7 @@ a
     margin: 0 25px 25px 25px;  
 }
 
-#body h3
+h3
 {
     color: #4B78A1;
 }
@@ -149,7 +150,7 @@ a
 
 #donate th
 {
-    padding: 0px;
+    padding: 0;
 }
 
 td.donate
@@ -178,6 +179,7 @@ a.donate
     background-color: #4B78A1;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
+    -o-border-radius: 10px;
     border-radius: 10px;
 }
 
