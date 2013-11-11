@@ -220,3 +220,16 @@ a.donate
     clear: both;  
     overflow: hidden;
 }
+#register
+{
+    width: 155px;
+    margin: 20px auto 0 auto;
+}
+#submit
+{
+    width: 153px;    
+}
+.right
+{
+    float: right;
+}
