@@ -125,7 +125,7 @@ if (!empty($_POST))
                 die();   
             }
             
-            header("Location: http://" . $_SERVER['SERVER_NAME'] . "/index.php?p=login");
+            header("Location: http://" . $_SERVER['SERVER_NAME'] . "/login");
             die();
         }
     }
@@ -142,7 +142,7 @@ if (!empty($_POST))
 					print("</code>");
 				}
             ?>
-            <form class="registerlogin" action="/index.php?p=register" method="post" >
+            <form class="registerlogin" action="/register" method="post" >
                 <input type="email" maxlenth="50" name="email" placeholder="Email" value="<?php if (isset($_POST['email'])) echo htmlentities($_POST['email'], ENT_QUOTES, 'UTF-8'); ?>" />
                 <input type="text" maxlength="15" name="username" placeholder="Username" value="<?php if (isset($_POST['username'])) echo htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8'); ?>"/>
                 <input type="password" maxlength="18" name="password" placeholder="Password" />
