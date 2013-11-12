@@ -13,6 +13,7 @@ if (isset($_GET['p']))
 		case "articles": include_once('pages/articles.php'); break;
 		case "register": include_once('pages/register.php'); break;
 		case "login": include_once('pages/login.php'); break;
+		default: include_once('pages/notFound.php'); break;
 	}
 }
 else {
