@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Radford Child Development</title>
-        <link rel="stylesheet" type="text/css" href="css/default.css">
-        <script type="text/javascript" src="js/switchCSS.js"></script>
-        <meta charset="utf-8">
-        <meta name="keywords" content="radford, radford childcare, childcare, child care, daycare, radford daycare, radford child development, daycare">
-    </head>
-    <body>
-        <a class = "right" href="register.html">Login/Register</a>
-        <div id="header">
-            <h1>Radford Child Development Inc.</h1>
-            <img src="images/banner.jpg">
-        </div>
-        <div id="wrapper">
-            <div class="clear" id="nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="donate.html">Donate</a></li>
-                    <li><a href="articles.html">Articles</a></li>
-                    <li><a href="#" class="active">About Us</a></li>
-                </ul>
-                <a class="donate" target="_blank"
-                   href="https://cfnrv.givebig.org/c/NRV/a/cfnrv-013/">Donate</a>
-            </div>
-            <div id="content">
-                <div id="body">
-					<h3 style="text-align:center">Future Location</h3>
+					<h1 style="text-align:center">Future Location</h1>
 					<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;t=h&amp;ll=37.12364,-80.535697&amp;spn=0.001497,0.00228&amp;z=18&amp;output=embed"></iframe><br /><small style="text-align:center;display:block;"><a href="https://maps.google.com/?ie=UTF8&amp;t=h&amp;ll=37.12364,-80.535697&amp;spn=0.001497,0.00228&amp;z=18&amp;source=embed" style="color:#0000FF">View Larger Map</a></small>
 					
                     <h3>Who are we?</h3>
@@ -60,26 +32,3 @@
                     <p>
                         No goods or services will be provided in exchange for your donation. Your donation is tax deductible to the extent allowed by law. 
                     </p>
-                </div>
-            </div>
-        </div>
-        <div id="footer">
-            <p>&copy; Radford Child Development Inc. 2013</p>
-        </div>
-        <!--
-        <div id="theme-selector">
-            <form>
-                Choose Theme: 
-                <select onchange="switchCSS(this)">
-                    <option value="default">Default</option>
-                    <option value="blue">Blue</option>
-                    <option value="green">Green</option>
-                    <option value="pink">Pink</option>
-                    <option value="orange">Orange</option>
-                    <option value="purple">Purple</option>
-                </select>
-            </form>
-        </div>
-        -->
-    </body>
-</html>

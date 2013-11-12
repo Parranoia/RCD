@@ -220,15 +220,21 @@ a.donate
     clear: both;  
     overflow: hidden;
 }
-#register
+.registerlogin
 {
-    width: 155px;
-    margin: 20px auto 0 auto;
+	width: 180px;
+    margin: 20px auto 0;
 }
-#submit
+.registerlogin input
 {
-    width: 153px;    
+	width: 175px;
 }
+
+.small
+{
+	font-size: 10px;
+}
+
 .right
 {
     float: right;

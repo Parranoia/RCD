@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Radford Child Development</title>
-        <link rel="stylesheet" type="text/css" href="css/default.css">
-        <script type="text/javascript" src="js/switchCSS.js"></script>
-        <meta charset="utf-8">
-   	    <meta name="keywords" content="radford, radford childcare, childcare, child care, daycare, radford daycare, radford child development, daycare">
-    </head>
-    <body>
-        <a class = "right" href="register.html">Login/Register</a>
-        <div id="header">
-            <h1>Radford Child Development Inc.</h1>
-            <img src="images/banner.jpg">
-        </div>
-        <div id="wrapper">
-            <div class="clear" id="nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a class="active" href="donate.html">Donate</a></li>
-                    <li><a href="articles.html">Articles</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                </ul>
-                <a class="donate" target="_blank"
-                   href="https://cfnrv.givebig.org/c/NRV/a/cfnrv-013/">Donate</a>
-            </div>
-            <div id="content">
-                <div id="body">
-                    <h1>Help us to Make This New Facility a Reality!</h1>
+					<h1>Help us to Make This New Facility a Reality!</h1>
                     <h3>Community Foundation of the New River Valley</h3>
                     <p>
                         Radford Child Development, Inc. is pleased to accept donations through a partnership with the Community Foundation of the New River Valley, a public not-for-profit organization benefiting the New River Valley. 
@@ -57,26 +29,3 @@ For more information on the Foundation, visit <a href="https://cfnrv.org">cfnrv.
                             </td>
                         </tr>    
                     </table>
-                </div>
-            </div>
-        </div>
-        <div id="footer">
-            <p>&copy; Radford Child Development Inc. 2013</p>
-        </div>
-        <!--
-        <div id="theme-selector">
-            <form>
-                Choose Theme: 
-                <select onchange="switchCSS(this)">
-                    <option value="default">Default</option>
-                    <option value="blue">Blue</option>
-                    <option value="green">Green</option>
-                    <option value="pink">Pink</option>
-                    <option value="orange">Orange</option>
-                    <option value="purple">Purple</option>
-                </select>
-            </form>
-        </div>
-        -->
-    </body>
-</html>

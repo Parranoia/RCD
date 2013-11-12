@@ -1,34 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Radford Child Development</title>
-        <link rel="stylesheet" type="text/css" href="css/default.css">
-        <script type="text/javascript" src="js/switchCSS.js"></script>
-        <meta charset="utf-8">
-        <meta name="keywords" content="radford, radford childcare, childcare, child care, daycare, radford daycare, radford child development, daycare">
-    </head>
-    <body>
-        <a class = "right" href="register.html">Login/Register</a>
-        <div id="header">
-            <h1>Radford Child Development Inc.</h1>
-            <img src="images/banner.jpg">
-        </div>
-        <div id="wrapper">
-            <div class="clear" id="nav">
-                <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="donate.html">Donate</a></li>
-                    <li><a href="articles.html">Articles</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                </ul>
-                <a class="donate" target="_blank"
-                   href="https://cfnrv.givebig.org/c/NRV/a/cfnrv-013/">Donate</a>
-            </div>
-            <div class="clear" id="content">
-                <h1 style="margin-bottom:-20px;">Quality Childcare in Radford</h1>
-                <h1>Opening August 2014!</h1>
-                <img src="images/child.jpg" align="middle" />
-                <div id="body">
+					<h1 style="margin-bottom:-20px;">Quality Childcare in Radford</h1>
+                	<h1>Opening August 2014!</h1>
+                	<img src="images/child.jpg" align="middle" />
+                	
                     <h3>Mission Statement</h3>
                     <p>
                         To develop and/or support excellent, nationally accredited child development program(s) in Radford that embodies the best practices of early childhood care and education. 
@@ -52,12 +25,3 @@
                             Phone: (434) 227-7196
                         </p>
                     </div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-        </div>
-        <div id="footer">
-            <p>&copy; Radford Child Development Inc. 2013</p>
-        </div>
-    </body>
-</html>
