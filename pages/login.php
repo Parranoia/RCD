@@ -52,15 +52,13 @@ if (!empty($_POST))
     else
     {
         $user = htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8');
-        header("Location: http://" . $_SERVER['SERVER_NAME'] . "/login");
-        die();
     }
 }
 
 ?>
             <?php
                 if ($user != "")
-                    print("<code style='color:red'>Username or password incorrect</code><br />");
+                    print("<code>Username or password incorrect</code><br />");
             ?>
             <form class="registerlogin" action="/login" method="POST">
             	<a class="small" href="/register">Don't have an account?</a>

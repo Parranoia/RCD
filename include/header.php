@@ -8,7 +8,13 @@
         <meta name="keywords" content="radford, radford childcare, childcare, child care, daycare, radford daycare, radford child development, daycare">
     </head>
     <body>
-        <?php if (!isset($_SESSION['user'])) print("<a class=\"right\" href=\"/login\">Login/Register</a>"); ?>
+        <?php 
+        	if (!isset($_SESSION['user']))
+    			print("<a class=\"right\" href=\"/login\">Login/Register</a>");
+			else {
+				print("<a class=\"right\" href=\"/logout\">" . "Logout (" . $_SESSION['user']['username'] . ")</a>");
+			}
+		?>
         <div id="header">
             <h1>Radford Child Development Inc.</h1>
             <img src="images/banner.jpg">

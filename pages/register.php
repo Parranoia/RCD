@@ -136,7 +136,7 @@ if (!empty($_POST))
             <?php 
                 if (!empty($errors))
 				{
-					print("<code style=\"color:red; font-size: 10px; margin: 0 auto; display: block; width: 325px;\">");
+					print("<code>");
                     foreach ($errors as $error)
                         print($error . "<br>");
 					print("</code>");

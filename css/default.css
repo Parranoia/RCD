@@ -6,6 +6,15 @@ body
     color: #4F5155;
 }
 
+code
+{
+	display: block;
+	margin: 0 auto;
+	width: 325px;
+	font-size: 11px;
+	color: red;
+}
+
 iframe
 {
 	margin: 0 auto;
