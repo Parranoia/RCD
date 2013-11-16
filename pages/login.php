@@ -8,11 +8,12 @@ if (isset($_SESSION['user']) || !empty($_SESSION['user']))
 }
 
 $user = "";
+$errors = array();
 
 // Check if data has been submitted or not
 if (!empty($_POST))
 {
-    $query = "SELECT id, username, password, salt, email FROM users WHERE username = :username";
+    $query = "SELECT id, username, password, salt, email, active FROM users WHERE username = :username";
     
     $query_params = array(':username' => $_POST['username']);
     
@@ -40,25 +41,38 @@ if (!empty($_POST))
     
     if ($success)
     {
-        // Remove sensitive information from being stored later
-        unset($row['salt']);
-        unset($row['password']);
+        if ($row['active'] == 0) // Account has not been verified
+        {
+            $errors[] = 'Your account\'s email address has not been verified';
+            $errors[] = 'Please check your email for the activation link';
+        }
         
-        $_SESSION['user'] = $row;
-        
-        header("Location: http://" . $_SERVER['SERVER_NAME']);
-        die();
+        // Make sure there are no errors before logging them in
+        if (empty($errors))
+        {
+            // Remove sensitive information from being stored later
+            unset($row['salt']);
+            unset($row['password']);
+            
+            $_SESSION['user'] = $row;
+            
+            header("Location: http://" . $_SERVER['SERVER_NAME']);
+            die();
+        }
     }
     else
     {
+        $errors[] = 'Username or password incorrect';
         $user = htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8');
     }
 }
 
 ?>
             <?php
-                if ($user != "")
-                    print("<code>Username or password incorrect</code><br />");
+                print('<code>');
+                foreach ($errors as $error)
+                    print($error . '<br>');
+                print('</code>');
             ?>
             <form class="registerlogin" action="/login" method="POST">
             	<a class="small" href="/register">Don't have an account?</a>

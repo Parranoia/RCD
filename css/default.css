@@ -10,8 +10,8 @@ code
 {
 	display: block;
 	margin: 0 auto;
-	width: 325px;
-	font-size: 11px;
+	width: 390px;
+	font-size: 12px;
 	color: red;
 }
 
@@ -231,12 +231,21 @@ a.donate
 }
 .registerlogin
 {
-	width: 180px;
+	width: 300px;
     margin: 20px auto 0;
 }
 .registerlogin input
 {
-	width: 175px;
+	width: 300px;
+}
+
+.registersuccess
+{
+    width: 350px;
+    font-size: 12px;
+    color: rgb(8, 91, 180);
+    text-align: center;
+    margin: 10px auto 0;
 }
 
 .small
