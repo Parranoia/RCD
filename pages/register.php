@@ -20,6 +20,7 @@ if (!empty($_POST))
         $errors[$error_count] = "Invalid email address";
         $error_count++;
     }
+    // Username must start with a letter, then is followed by 3-14 alphanumeric characters
     if (!preg_match('/^[A-Za-z][A-Za-z0-9]{3,14}$/', $_POST['username']))
     {
         $errors[$error_count] = "Invalid username";
@@ -46,11 +47,13 @@ if (!empty($_POST))
         $errors[$error_count] = "Passwords do not match";
         $error_count++;
     }
-	if (!preg_match('/^[a-zA-Z0-9!.-_+@]{8,18}$/', $_POST['password']))
+    // Password can only contain alphanumeric characters, and `!`, `.`, `-`, `_`, `+`
+    // Must also be between 8 and 18 characters long
+	if (!preg_match('/^[a-zA-Z0-9!.-_+]{8,18}$/', $_POST['password']))
 	{
 		$errors[$error_count] = "Password must be between 8 and 18 characters long";
 		$error_count++;
-		$errors[$error_count] = "Password may only contain alphanumeric characters or `!`, `.`, `-`, `_`, `+`, `@`";
+		$errors[$error_count] = "Password may only contain alphanumeric characters or `!`, `.`, `-`, `_`, `+`";
 		$error_count++;
 	}
     
@@ -103,17 +106,21 @@ if (!empty($_POST))
         
         if (empty($errors))
         {        
-            $query = "INSERT INTO users (username, password, salt, email) VALUES
-                        (:username, :password, :salt, :email)";
+            $query = "INSERT INTO users (username, password, salt, email, active, email_hash) VALUES
+                        (:username, :password, :salt, :email, :active, :hash)";
             
             $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
+            
+            $email_hash = md5(uniqid(rand(), true));
             
             $password = hash('sha256', $_POST['password'] . $salt);
             
             $query_params = array(':username' => $_POST['username'],
                                   ':password' => $password,
                                   ':salt'     => $salt,
-                                  ':email'    => $_POST['email']);
+                                  ':email'    => $_POST['email'],
+                                  ':active'   => 0,
+                                  ':hash'     => $email_hash);
             
             try
             {
@@ -125,8 +132,55 @@ if (!empty($_POST))
                 die();   
             }
             
-            header("Location: http://" . $_SERVER['SERVER_NAME'] . "/login");
-            die();
+            $email = $_POST['email'];
+            
+            include_once('PHPMailer/class.phpmailer.php');
+            $mail = new PHPMailer();
+            
+            $mail->IsSMTP();
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = '465';
+            $mail->Username = 'gmailusernamehere';
+            $mail->Password = 'gmailpasswordhere';
+            
+            $mail->From = 'webmaster@web.com';
+            $mail->FromName = 'Radford Child Development';
+            $mail->Subject = 'Radford Child Development | Account Activation';
+            
+            $message = 
+'Thank you for registering at Radford Child Development!
+Your account has been created and now just needs to verify this email.
+                
+Click the link below to activate your account
+http://' . $_SERVER['SERVER_NAME'] . '/index.php?p=verify&email=' . $email . '&code=' . $email_hash;
+            
+            $mail->Body = $message;
+            $mail->IsHTML(false);
+            
+            $mail->AddAddress($email, $_POST['username']);
+            
+            if(!$mail->Send())
+                echo($mail->ErrorInfo);
+            else
+                $mail->ClearAddresses();
+            
+            
+            /*$email = $_POST['email'];
+            $message = 'Thank you for registering at Radford Child Development!\n' .
+                'Your account has been created and now just needs to verify this email.\n\n' .
+                'Click the link below to activate your account\n' .
+                'http://' . $_SERVER['SERVER_NAME'] . '/verify.php?email=' . $email . '&code=' . $email_hash . '';
+            
+            $headers = 'From: webmaster@example.com';
+            
+            mail($email, "Radford Child Development | Account Activation", $message, $headers);                
+            */
+            print('<div class=\"registersuccess\">Thank you for registering! An email has been sent to ' . $email . ' to activate your account</div>');
+            
+            //header("Location: http://" . $_SERVER['SERVER_NAME'] . "/login");
+            //die();
         }
     }
 }
@@ -147,5 +201,5 @@ if (!empty($_POST))
                 <input type="text" maxlength="15" name="username" placeholder="Username" value="<?php if (isset($_POST['username'])) echo htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8'); ?>"/>
                 <input type="password" maxlength="18" name="password" placeholder="Password" />
                 <input type="password" maxlength="18" name="pass_confirm" placeholder="Confirm Password" />
-                <input type="submit" value="Register" />
+                <input style="width:304px" type="submit" value="Register" />
             </form>
