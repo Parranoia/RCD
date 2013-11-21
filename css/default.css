@@ -257,3 +257,9 @@ a.donate
 {
     float: right;
 }
+
+.error
+{
+	font-size: 11px;
+	color: red;
+}
