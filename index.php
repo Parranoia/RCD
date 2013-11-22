@@ -18,9 +18,8 @@ if (isset($_GET['p']))
 		default: include_once('pages/notFound.php'); break;
 	}
 }
-else {
+else 
 	include_once('pages/home.php');
-}
 
 include_once('include/footer.php');
 

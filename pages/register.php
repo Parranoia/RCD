@@ -8,53 +8,53 @@ if (isset($_SESSION['user']) || !empty($_SESSION['user']))
 }
 
 // Stores any errors that occur
-$email_errors = array();
-$username_errors = array();
-$password_errors = array();
+$errors = array();
 
 // Check whether or not data has been submitted
 if (!empty($_POST))
 {
     
     if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-    {
-        $email_errors[] = "Invalid email";
-    }
+        $errors["email"] = "Invalid email";
     // Username must start with a letter, then is followed by 3-14 alphanumeric characters
     if (empty($_POST['username']))
-    {
-        $username_errors[] = "Please enter a username";
-    }
+        $errors["username"] = "Please enter a username";
 	// If username is not empty
 	else 
 	{
 		if (!preg_match('/^[A-Za-z][A-Za-z0-9]{3,14}$/', $_POST['username']))
-    	{
-        	$username_errors[] = "Username must be between 4 and 15 characters long, start with a letter, and may only contain alphanumeric characters";
-    	}	
+            $errors["username"] = "Username must be between 4 and 15 characters long, start with a letter, and may only contain alphanumeric characters";
 	}
     if (empty($_POST['password']))
-    {
-        $password_errors[] = "Please enter a password";
-    }
+        $errors["password"] = "Please enter a password";
 	else 
 	{
-		if ($_POST['password'] !== $_POST['pass_confirm'])
-	    {
-	        $password_errors[] = "Passwords do not match";
-	    }	
-		else 
-		{
-			// Password can only contain alphanumeric characters, and `!`, `.`, `-`, `_`, `+`
-		    // Must also be between 8 and 18 characters long
-			if (!preg_match('/^[a-zA-Z0-9!.-_+]{8,18}$/', $_POST['password']))
-			{
-				$password_errors[] = "Password must be between 8 and 18 characters long and may only contain alphanumeric characters and `!`, `.`, `-`, `_`, `+`";
-			}	
-		}
+        if (!preg_match('/^[a-zA-Z0-9.-_!]{8,18}$/', $_POST['password']))
+        {
+            if (strlen($_POST['password']) < 8 || strlen($_POST['password']) > 18)
+                $errors['password'] = "Password must be between 8 and 18 characters long";
+            else
+            {
+                // Find out what characters failed the check
+                $invalid_chars = preg_replace('/([a-zA-Z0-9.\-_!]*)/', '', $_POST['password']);
+                $char_arr = str_split($invalid_chars);
+                
+                // Remove duplicates
+                $char_arr = array_unique($char_arr);
+                
+                $msg = "Password cannot contain the following: ";
+                foreach ($char_arr as $char)
+                    $msg .= $char . ' ';
+                $msg = $substr($msg, 0, strlen($msg) - 2);
+                $errors['password'] = $msg;
+            }
+        }
+        else if ($_POST['password'] !== $_POST['pass_confirm'])
+            $errors["password"] = "Passwords do not match";
 	}
     
-    if (empty($email_errors) && empty($username_errors) && empty($password_errors))
+    //if (empty($email_errors) && empty($username_errors) && empty($password_errors))
+    if (empty($errors))
     {                
         $query = "SELECT 1 FROM users 
             WHERE username = :username";
@@ -74,9 +74,7 @@ if (!empty($_POST))
         $row = $stmt->fetch();
         
         if ($row)
-        {
-            $username_errors[] = "This username already exists";
-        }
+            $errors["username"] = "This username already exists";
         
         $query = "SELECT 1 FROM users WHERE email = :email";
         
@@ -95,9 +93,7 @@ if (!empty($_POST))
         $row = $stmt->fetch();
         
         if ($row)
-        {
-            $email_errors[] = "This email is already in use";
-        }
+            $errors["email"] = "This email is already in use";
         
         if (empty($errors))
         {        
@@ -183,36 +179,21 @@ http://' . $_SERVER['SERVER_NAME'] . '/index.php?p=verify&email=' . $email . '&c
 ?>
 
             <form class="registerlogin" action="/register" method="post" >
+                <?php
+                    if (isset($errors["email"]))
+                        print("<div class=\"error\">" . $errors['email'] . "</div>");
+                ?>
                 <input type="email" maxlenth="50" name="email" placeholder="Email" value="<?php if (isset($_POST['email'])) echo htmlentities($_POST['email'], ENT_QUOTES, 'UTF-8'); ?>" />
-                <?php 
-                	if (!empty($email_errors))
-					{
-						print("<div class=\"error\">\n");
-							foreach($email_errors as $error)
-								print($error);
-						print("</div>\n");
-					}
-				?>
+                <?php
+                    if (isset($errors["username"]))
+                        print("<div class=\"error\">" . $errors['username'] . "</div>");
+                ?>
                 <input type="text" maxlength="15" name="username" placeholder="Username" value="<?php if (isset($_POST['username'])) echo htmlentities($_POST['username'], ENT_QUOTES, 'UTF-8'); ?>"/>
-                <?php 
-                	if (!empty($username_errors))
-					{
-						print("<div class=\"error\">\n");
-							foreach($username_errors as $error)
-								print($error);
-						print("</div>\n");
-					}
-				?>
+                <?php
+                    if (isset($errors["password"]))
+                        print("<div class=\"error\">" . $errors['password'] . "</div>");
+                ?>
                 <input type="password" maxlength="18" name="password" placeholder="Password" />
-                <?php 
-                	if (!empty($password_errors))
-					{
-						print("<div class=\"error\">\n");
-							foreach($password_errors as $error)
-								print($error);
-						print("</div>\n");
-					}
-				?>
                 <input type="password" maxlength="18" name="pass_confirm" placeholder="Confirm Password" />
                 <input style="width:304px" type="submit" value="Register" />
             </form>
