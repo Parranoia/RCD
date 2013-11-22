@@ -23,18 +23,14 @@
             <div class="clear" id="nav">
                 <ul>
                     <li><a <?php 
-                    	if (!isset($_GET[p]))
-						{ 
-                    		echo "class=\"active\"";  
-						}
-						else {
-							if ($_GET[p] == "home")
-								echo "class=\"active\"";
-						}
+                    	if (!isset($_GET['p']))
+                    		echo "class=\"active\"";
+						else if ($_GET['p'] == "home")
+                            echo "class=\"active\"";
                     	?> href="/home">Home</a></li>
-                    <li><a <?php if ($_GET[p] == "donate") echo "class=\"active\"" ?> href="/donate">Donate</a></li>
-                    <li><a <?php if ($_GET[p] == "articles") echo "class=\"active\"" ?> href="/articles">Articles</a></li>
-                    <li><a <?php if ($_GET[p] == "about") echo "class=\"active\"" ?> href="/about">About Us</a></li>
+                    <li><a <?php if (isset($_GET['p']) && $_GET['p'] == "donate") echo "class=\"active\""?> href="/donate">Donate</a></li>
+                    <li><a <?php if (isset($_GET['p']) && $_GET['p'] == "articles") echo "class=\"active\""?> href="/articles">Articles</a></li>
+                    <li><a <?php if (isset($_GET['p']) && $_GET['p'] == "about") echo "class=\"active\""?> href="/about">About Us</a></li>
                 </ul>
                 <a class="donate" target="_blank"
                    href="https://cfnrv.givebig.org/c/NRV/a/cfnrv-013/">Donate</a>
