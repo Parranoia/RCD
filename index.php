@@ -14,7 +14,7 @@ if (isset($_GET['p']))
 		case "register": include_once('pages/register.php'); break;
 		case "login": include_once('pages/login.php'); break;
 		case "logout": include_once('pages/logout.php'); break;
-        case "verify": include_once('pages/verify.php'); break;
+		case "account": include_once('pages/account.php'); break;
 		default: include_once('pages/notFound.php'); break;
 	}
 }
