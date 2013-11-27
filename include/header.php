@@ -10,14 +10,14 @@
     <body>
         <?php 
         	if (!isset($_SESSION['user']))
-    			print("<a class=\"right\" href=\"/login\">Login/Register</a>");
+    			print("<a class=\"right\" href=\"/login\">Login/Register</a>\n");
 			else {
-				print("<a class=\"right\" href=\"/logout\">" . "Logout (" . $_SESSION['user']['username'] . ")</a>");
+				print("<a class=\"right\" href=\"/logout\">" . "Logout (" . $_SESSION['user']['username'] . ")</a>\n");
 			}
 		?>
         <div id="header">
             <h1>Radford Child Development Inc.</h1>
-            <img src="images/banner.jpg">
+            <img src="/images/banner.jpg">
         </div>
         <div id="wrapper">
             <div class="clear" id="nav">

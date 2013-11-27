@@ -1,12 +1,14 @@
 <?php
 if (!isset($_GET['email']) || !isset($_GET['code']))
 {
-    header("Location: http://" . $_SERVER['SERVER_NAME']);
-    die();
+	echo 'Stuff not set';
+    //header("Location: http://" . $_SERVER['SERVER_NAME']);
+    //die();
 }
 
 $email = $_GET['email'];
 $hash = $_GET['code'];
+
 
 $query = "SELECT 1 FROM users WHERE email = :email AND email_hash = :hash";
 $query_params = array(':email' => $email,
@@ -44,7 +46,7 @@ if ($row)
 }
 else
 {
-    header("Location: https://" . $_SERVER['SERVER_NAME']);
+    header("Location: http://" . $_SERVER['SERVER_NAME']);
     die();
 }
 
