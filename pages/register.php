@@ -131,20 +131,12 @@ if (!empty($_POST))
             $mail->IsSMTP();
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = 'ssl';
-            /*
             $mail->Host = 'smtp.gmail.com';
             $mail->Port = '465';
             $mail->Username = 'yourgmail@gmail.com';
             $mail->Password = 'gmailpassword';
             
             $mail->From = 'webmaster@web.com';
-            */
-            $mail->Host = 'rs14.websitehostserver.net';
-            $mail->Port = '465';
-            $mail->Username = 'noreply@radfordchilddevelopment.org';
-            $mail->Password = 'justwhatever1';
-            $mail->From = 'noreply@radfordchilddevelopment.org';
-            
             $mail->FromName = 'Radford Child Development';
             $mail->Subject = 'Radford Child Development | Account Activation';
             
@@ -176,7 +168,7 @@ http://' . $_SERVER['SERVER_NAME'] . '/index.php?p=verify&email=' . $email . '&c
             
             mail($email, "Radford Child Development | Account Activation", $message, $headers);                
             */
-            print('<div class=\"postinfo\">Thank you for registering! An email has been sent to ' . $email . ' to activate your account</div>');
+            print('<div class=\"registersuccess\">Thank you for registering! An email has been sent to ' . $email . ' to activate your account</div>');
             
             //header("Location: http://" . $_SERVER['SERVER_NAME'] . "/login");
             //die();
@@ -186,7 +178,7 @@ http://' . $_SERVER['SERVER_NAME'] . '/index.php?p=verify&email=' . $email . '&c
 
 ?>
 
-            <form class="centerform" action="/register" method="post" >
+            <form class="registerlogin" action="/register" method="post" >
                 <?php
                     if (isset($errors["email"]))
                         print("<div class=\"error\">" . $errors['email'] . "</div>");
