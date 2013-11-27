@@ -8,7 +8,6 @@ if (!isset($_GET['action']))
 else
 {
 	$action = $_GET['action'];
-	
 	switch($action)
 	{
 		case "verify": include_once('pages/verify.php'); break;

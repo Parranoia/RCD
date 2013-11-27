@@ -131,18 +131,11 @@ if (!empty($_POST))
             $mail->IsSMTP();
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = 'ssl';
-            /*
-            $mail->Host = 'smtp.gmail.com';
-            $mail->Port = '465';
-            $mail->Username = 'yourgmail@gmail.com';
-            $mail->Password = 'gmailpassword';
-            
-            $mail->From = 'webmaster@web.com';
-            */
+
             $mail->Host = 'rs14.websitehostserver.net';
             $mail->Port = '465';
             $mail->Username = 'noreply@radfordchilddevelopment.org';
-            $mail->Password = 'justwhatever1';
+            $mail->Password = 'passwordhere';
             $mail->From = 'noreply@radfordchilddevelopment.org';
             
             $mail->FromName = 'Radford Child Development';
@@ -153,7 +146,7 @@ if (!empty($_POST))
 Your account has been created and now just needs to verify this email.
                 
 Click the link below to activate your account
-http://' . $_SERVER['SERVER_NAME'] . '/index.php?p=verify&email=' . $email . '&code=' . $email_hash;
+http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key=' . $email_hash;
             
             $mail->Body = $message;
             $mail->IsHTML(false);
@@ -161,21 +154,10 @@ http://' . $_SERVER['SERVER_NAME'] . '/index.php?p=verify&email=' . $email . '&c
             $mail->AddAddress($email, $_POST['username']);
             
             if(!$mail->Send())
-                echo($mail->ErrorInfo);
+                echo 'Error sending email';
             else
                 $mail->ClearAddresses();
             
-            
-            /*$email = $_POST['email'];
-            $message = 'Thank you for registering at Radford Child Development!\n' .
-                'Your account has been created and now just needs to verify this email.\n\n' .
-                'Click the link below to activate your account\n' .
-                'http://' . $_SERVER['SERVER_NAME'] . '/verify.php?email=' . $email . '&code=' . $email_hash . '';
-            
-            $headers = 'From: webmaster@example.com';
-            
-            mail($email, "Radford Child Development | Account Activation", $message, $headers);                
-            */
             print('<div class=\"postinfo\">Thank you for registering! An email has been sent to ' . $email . ' to activate your account</div>');
             
             //header("Location: http://" . $_SERVER['SERVER_NAME'] . "/login");
