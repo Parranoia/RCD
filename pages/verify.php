@@ -1,12 +1,13 @@
 <?php
-if (!isset($_GET['email']) || !isset($_GET['code']))
+if (!isset($_GET['email']) || !isset($_GET['key']))
 {
     header("Location: http://" . $_SERVER['SERVER_NAME']);
     die();
 }
 
 $email = $_GET['email'];
-$hash = $_GET['code'];
+$hash = $_GET['key'];
+
 
 $query = "SELECT 1 FROM users WHERE email = :email AND email_hash = :hash";
 $query_params = array(':email' => $email,
@@ -40,11 +41,12 @@ if ($row)
         die();   
     }
     
-    echo 'Your account has been activated!';
+    echo "<div class=\"postinfo\">Your account has been activated!<br>You will be redirected in 3 seconds</div>";
+    header("refresh:3;url=http://" . $_SERVER['SERVER_NAME'] . "/login");
 }
 else
 {
-    header("Location: https://" . $_SERVER['SERVER_NAME']);
+    header("Location: http://" . $_SERVER['SERVER_NAME']);
     die();
 }
 

@@ -229,23 +229,29 @@ a.donate
     clear: both;  
     overflow: hidden;
 }
-.registerlogin
+.centerform
 {
 	width: 300px;
     margin: 20px auto 0;
 }
-.registerlogin input
+.centerform input
 {
 	width: 300px;
 }
 
-.registersuccess
+.postinfo
 {
     width: 350px;
     font-size: 12px;
     color: rgb(8, 91, 180);
     text-align: center;
     margin: 10px auto 0;
+}
+
+.forminfo
+{
+	font-size: 12px;
+	text-align: center;
 }
 
 .small

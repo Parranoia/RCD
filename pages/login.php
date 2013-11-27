@@ -68,17 +68,16 @@ if (!empty($_POST))
 }
 
 ?>
-            <?php
-                print('<code>');
-                foreach ($errors as $error)
-                    print($error . '<br>');
-                print('</code>');
-            ?>
-            <form class="registerlogin" action="/login" method="POST">
+            <form class="centerform" action="/login" method="POST">
+                <?php
+                    if (!empty($errors))
+                        foreach ($errors as $error)
+                            print ("<div class=\"error\">" . $error . "</div>\n\t\t\t");
+                ?>
             	<a class="small" href="/register">Don't have an account?</a>
                 <input type="text"  maxlength="15"name="username" placeholder="Username" value="<?php echo $user ?>" />
                 <a class="small" href="#">Forgot Username?</a>
                 <input type="password" maxlength="18" name="password" placeholder="Password" />
-                <a class="small" href="#">Forgot Password?</a>
-                <input type="submit" value="Login" />
+                <a class="small" href="/account/forgot_password">Forgot Password?</a>
+                <input style="width:304px" type="submit" value="Login" />
             </form>
