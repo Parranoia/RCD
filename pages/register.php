@@ -96,35 +96,14 @@ if (!empty($_POST))
             $errors["email"] = "This email is already in use";
         
         if (empty($errors))
-        {        
-            $query = "INSERT INTO users (username, password, salt, email, active, email_hash) VALUES
-                        (:username, :password, :salt, :email, :active, :hash)";
-            
+        {
+            $email = htmlentities($_POST['email']); // sanitize user input
+            $email_hash = md5(uniqid(rand(), true));
             $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
             
-            $email_hash = md5(uniqid(rand(), true));
-            
-            $password = hash('sha256', $_POST['password'] . $salt);
-            
-            $query_params = array(':username' => $_POST['username'],
-                                  ':password' => $password,
-                                  ':salt'     => $salt,
-                                  ':email'    => $_POST['email'],
-                                  ':active'   => 0,
-                                  ':hash'     => $email_hash);
-            
-            try
-            {
-                $stmt = $db->prepare($query);
-                $result = $stmt->execute($query_params);
-            }
-            catch(PDOException $e)
-            {
-                die();   
-            }
-            
-            $email = $_POST['email'];
-            
+            /**
+             * Sending Email
+             */
             include_once('PHPMailer/class.phpmailer.php');
             $mail = new PHPMailer();
             
@@ -153,15 +132,41 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key='
             
             $mail->AddAddress($email, $_POST['username']);
             
+            /**
+             * End sending email
+             */
+            
             if(!$mail->Send())
                 echo 'Error sending email';
             else
-                $mail->ClearAddresses();
+            {
+                $mail->ClearAddresses();                                
+                        
+                $query = "INSERT INTO users (username, password, salt, email, active, email_hash) VALUES
+                            (:username, :password, :salt, :email, :active, :hash)";
+                
+                $password = hash('sha256', $_POST['password'] . $salt);
+                
+                $query_params = array(':username' => $_POST['username'],
+                                      ':password' => $password,
+                                      ':salt'     => $salt,
+                                      ':email'    => $_POST['email'],
+                                      ':active'   => 0,
+                                      ':hash'     => $email_hash);
+                
+                try
+                {
+                    $stmt = $db->prepare($query);
+                    $result = $stmt->execute($query_params);
+                }
+                catch(PDOException $e)
+                {
+                    die();   
+                }
+                
+                print('<div class=\"postinfo\">Thank you for registering! An email has been sent to ' . $email . ' to activate your account</div>'); 
+            }
             
-            print('<div class=\"postinfo\">Thank you for registering! An email has been sent to ' . $email . ' to activate your account</div>');
-            
-            //header("Location: http://" . $_SERVER['SERVER_NAME'] . "/login");
-            //die();
         }
     }
 }
