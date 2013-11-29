@@ -12,6 +12,7 @@ else
 	{
 		case "verify": include_once('pages/verify.php'); break;
 		case "forgot_password": include_once('pages/forgot_password.php'); break;
+        case "recover_password": include_once('pages/recover_password.php'); break;
 		default: include_once('pages/notFound.php'); break;
 	}
 }
