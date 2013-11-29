@@ -41,8 +41,8 @@ if ($row)
         die();   
     }
     
-    echo "<div class=\"postinfo\">Your account has been activated!<br>You will be redirected in 3 seconds</div>";
-    header("refresh:3;url=http://" . $_SERVER['SERVER_NAME'] . "/login");
+    echo "<div class=\"postinfo\">Your account has been activated!<br>You will be redirected in 5 seconds</div>";
+    header("refresh:5;url=http://" . $_SERVER['SERVER_NAME'] . "/login");
 }
 else
 {
