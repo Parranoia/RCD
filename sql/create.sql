@@ -10,15 +10,24 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping database structure for rcd
-CREATE DATABASE IF NOT EXISTS `rcd` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `rcd`;
+-- Dumping structure for table rcd.forgot_password
+DROP TABLE IF EXISTS `forgot_password`;
+CREATE TABLE IF NOT EXISTS `forgot_password` (
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `user` int(12) unsigned NOT NULL DEFAULT '0',
+  `key` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user` (`user`),
+  CONSTRAINT `user_forgot_pass` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Data exporting was unselected.
 
 
 -- Dumping structure for table rcd.users
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(16) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
