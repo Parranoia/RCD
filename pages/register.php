@@ -25,6 +25,7 @@ if (!empty($_POST))
 		if (!preg_match('/^[A-Za-z][A-Za-z0-9]{3,14}$/', $_POST['username']))
             $errors["username"] = "Username must be between 4 and 15 characters long, start with a letter, and may only contain alphanumeric characters";
 	}
+    // Check if the password field was set
     if (empty($_POST['password']))
         $errors["password"] = "Please enter a password";
 	else 
@@ -53,9 +54,9 @@ if (!empty($_POST))
             $errors["password"] = "Passwords do not match";
 	}
     
-    //if (empty($email_errors) && empty($username_errors) && empty($password_errors))
     if (empty($errors))
-    {                
+    {
+        // Find out if the username already exists                
         $query = "SELECT 1 FROM users 
             WHERE username = :username";
         
@@ -76,6 +77,7 @@ if (!empty($_POST))
         if ($row)
             $errors["username"] = "This username already exists";
         
+        // Check if the supplied email is already in use
         $query = "SELECT 1 FROM users WHERE email = :email";
         
         $query_params = array(':email' => $_POST['email']);
@@ -98,8 +100,8 @@ if (!empty($_POST))
         if (empty($errors))
         {
             $email = htmlentities($_POST['email']); // sanitize user input
-            $email_hash = md5(uniqid(rand(), true));
-            $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
+            $email_hash = md5(uniqid(rand(), true)); // Generate a hash to verify their email
+            $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647)); // This salt is used to encrypt the password
             
             /**
              * Sending Email
@@ -131,7 +133,6 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key='
             $mail->IsHTML(false);
             
             $mail->AddAddress($email, $_POST['username']);
-            
             /**
              * End sending email
              */
@@ -142,6 +143,7 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key='
             {
                 $mail->ClearAddresses();                                
                         
+                // If the mail was sent with no errors, create a user in the database
                 $query = "INSERT INTO users (username, password, salt, email, active, email_hash) VALUES
                             (:username, :password, :salt, :email, :active, :hash)";
                 
@@ -164,6 +166,7 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key='
                     die();   
                 }
                 
+                // Print out message to the user
                 print('<div class=\"postinfo\">Thank you for registering! An email has been sent to ' . $email . ' to activate your account</div>'); 
             }
             
