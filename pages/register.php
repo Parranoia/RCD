@@ -3,7 +3,7 @@
 // Redirect if user is already logged in
 if (isset($_SESSION['user']) || !empty($_SESSION['user']))
 {
-    header("Location: http://" . $_SERVER['SERVER_NAME']);
+    redirect();
     die();
 }
 
@@ -25,6 +25,7 @@ if (!empty($_POST))
 		if (!preg_match('/^[A-Za-z][A-Za-z0-9]{3,14}$/', $_POST['username']))
             $errors["username"] = "Username must be between 4 and 15 characters long, start with a letter, and may only contain alphanumeric characters";
 	}
+    // Check if the password field was set
     if (empty($_POST['password']))
         $errors["password"] = "Please enter a password";
 	else 
@@ -53,9 +54,9 @@ if (!empty($_POST))
             $errors["password"] = "Passwords do not match";
 	}
     
-    //if (empty($email_errors) && empty($username_errors) && empty($password_errors))
     if (empty($errors))
-    {                
+    {
+        // Find out if the username already exists                
         $query = "SELECT 1 FROM users 
             WHERE username = :username";
         
@@ -76,6 +77,7 @@ if (!empty($_POST))
         if ($row)
             $errors["username"] = "This username already exists";
         
+        // Check if the supplied email is already in use
         $query = "SELECT 1 FROM users WHERE email = :email";
         
         $query_params = array(':email' => $_POST['email']);
@@ -96,35 +98,14 @@ if (!empty($_POST))
             $errors["email"] = "This email is already in use";
         
         if (empty($errors))
-        {        
-            $query = "INSERT INTO users (username, password, salt, email, active, email_hash) VALUES
-                        (:username, :password, :salt, :email, :active, :hash)";
+        {
+            $email = htmlentities($_POST['email']); // sanitize user input
+            $email_hash = md5(uniqid(rand(), true)); // Generate a hash to verify their email
+            $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647)); // This salt is used to encrypt the password
             
-            $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
-            
-            $email_hash = md5(uniqid(rand(), true));
-            
-            $password = hash('sha256', $_POST['password'] . $salt);
-            
-            $query_params = array(':username' => $_POST['username'],
-                                  ':password' => $password,
-                                  ':salt'     => $salt,
-                                  ':email'    => $_POST['email'],
-                                  ':active'   => 0,
-                                  ':hash'     => $email_hash);
-            
-            try
-            {
-                $stmt = $db->prepare($query);
-                $result = $stmt->execute($query_params);
-            }
-            catch(PDOException $e)
-            {
-                die();   
-            }
-            
-            $email = $_POST['email'];
-            
+            /**
+             * Sending Email
+             */
             include_once('PHPMailer/class.phpmailer.php');
             $mail = new PHPMailer();
             
@@ -152,16 +133,43 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key='
             $mail->IsHTML(false);
             
             $mail->AddAddress($email, $_POST['username']);
+            /**
+             * End sending email
+             */
             
             if(!$mail->Send())
                 echo 'Error sending email';
             else
-                $mail->ClearAddresses();
+            {
+                $mail->ClearAddresses();                                
+                        
+                // If the mail was sent with no errors, create a user in the database
+                $query = "INSERT INTO users (username, password, salt, email, active, email_hash) VALUES
+                            (:username, :password, :salt, :email, :active, :hash)";
+                
+                $password = hash('sha256', $_POST['password'] . $salt);
+                
+                $query_params = array(':username' => $_POST['username'],
+                                      ':password' => $password,
+                                      ':salt'     => $salt,
+                                      ':email'    => $_POST['email'],
+                                      ':active'   => 0,
+                                      ':hash'     => $email_hash);
+                
+                try
+                {
+                    $stmt = $db->prepare($query);
+                    $result = $stmt->execute($query_params);
+                }
+                catch(PDOException $e)
+                {
+                    die();   
+                }
+                
+                // Print out message to the user
+                print('<div class=\"postinfo\">Thank you for registering! An email has been sent to ' . $email . ' to activate your account</div>'); 
+            }
             
-            print('<div class=\"postinfo\">Thank you for registering! An email has been sent to ' . $email . ' to activate your account</div>');
-            
-            //header("Location: http://" . $_SERVER['SERVER_NAME'] . "/login");
-            //die();
         }
     }
 }
