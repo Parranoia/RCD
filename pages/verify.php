@@ -1,7 +1,7 @@
 <?php
 if (!isset($_GET['email']) || !isset($_GET['key']))
 {
-    header("Location: http://" . $_SERVER['SERVER_NAME']);
+    redirect();
     die();
 }
 
@@ -42,11 +42,12 @@ if ($row)
     }
     
     echo "<div class=\"postinfo\">Your account has been activated!<br>You will be redirected in 5 seconds</div>";
-    header("refresh:5;url=http://" . $_SERVER['SERVER_NAME'] . "/login");
+    redirect("/login", 5000);
+    die();
 }
 else
 {
-    header("Location: http://" . $_SERVER['SERVER_NAME']);
+    redirect();
     die();
 }
 

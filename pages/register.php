@@ -3,7 +3,7 @@
 // Redirect if user is already logged in
 if (isset($_SESSION['user']) || !empty($_SESSION['user']))
 {
-    header("Location: http://" . $_SERVER['SERVER_NAME']);
+    redirect();
     die();
 }
 

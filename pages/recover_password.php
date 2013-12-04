@@ -1,7 +1,7 @@
 <?php
 if (!isset($_GET['email']) || !isset($_GET['key']))
 {
-    header("Location: http://" . $_SERVER['SERVER_NAME']);
+    redirect();
     die();
 }
 
@@ -94,7 +94,7 @@ $query_params = array(':email' => $email,
             
             print("<div class=\"postinfo\">Your password has been updated!<br>You will be redirected in 5 seconds</div>");
             
-            header("refresh:5;url=http://" . $_SERVER['SERVER_NAME'] . "/login");
+            redirect("/login", 5000);
         }
     }
  }

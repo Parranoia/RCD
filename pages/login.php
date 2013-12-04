@@ -3,7 +3,7 @@
 // If already logged in, redirect to the homepage
 if (isset($_SESSION['user']) || !empty($_SESSION['user']))
 {
-    header("Location: http://" . $_SERVER['SERVER_NAME']);
+    redirect();
     die();
 }
 
@@ -56,7 +56,7 @@ if (!empty($_POST))
             
             $_SESSION['user'] = $row;
             
-            header("Location: http://" . $_SERVER['SERVER_NAME']);
+            redirect();
             die();
         }
     }
