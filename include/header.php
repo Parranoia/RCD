@@ -4,6 +4,7 @@
         <title>Radford Child Development</title>
         <link rel="stylesheet" type="text/css" href="/css/default.css">
         <script type="text/javascript" src="/js/switchCSS.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <meta charset="utf-8">
         <meta name="keywords" content="radford, radford childcare, childcare, child care, daycare, radford daycare, radford child development, daycare">
     </head>

@@ -256,12 +256,18 @@ a.donate
 
 .small
 {
-	font-size: 10px;
+	font-size: 12px;
 }
 
 .right
 {
     float: right;
+}
+
+.center
+{
+	text-align: center;
+	margin: 0 auto 0 auto;
 }
 
 .error
