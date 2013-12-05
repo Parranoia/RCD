@@ -6,18 +6,11 @@ include_once('include/header.php');
 
 if (isset($_GET['p']))
 {
-	switch($_GET['p'])
-	{
-		case "home": include_once('pages/home.php'); break;
-		case "about": include_once('pages/about.php'); break;
-		case "donate": include_once('pages/donate.php'); break;
-		case "articles": include_once('pages/articles.php'); break;
-		case "register": include_once('pages/register.php'); break;
-		case "login": include_once('pages/login.php'); break;
-		case "logout": include_once('pages/logout.php'); break;
-		case "account": include_once('pages/account.php'); break;
-		default: include_once('pages/notFound.php'); break;
-	}
+	$page = 'pages/' . $_GET['p'] . '.php';
+	if (file_exists($page))
+		include_once($page);
+	else
+		include_once('pages/notFound.php');
 }
 else 
 	include_once('pages/home.php');

@@ -7,14 +7,11 @@ if (!isset($_GET['action']))
 }
 else
 {
-	$action = $_GET['action'];
-	switch($action)
-	{
-		case "verify": include_once('pages/verify.php'); break;
-		case "forgot_password": include_once('pages/forgot_password.php'); break;
-        case "recover_password": include_once('pages/recover_password.php'); break;
-		default: include_once('pages/notFound.php'); break;
-	}
+	$page = 'pages/' . $_GET['action'] . '.php';
+	if (file_exists($page))
+		include_once($page);
+	else
+		include_once('pages/notFound.php');
 }
 
 ?>
