@@ -38,8 +38,6 @@
 				    	showAnim: 'clip'
 				    });
 				});
-				
-				
 			</script>
 			<form id="interested" class="centerform" method="POST" action="/interested">
 				<fieldset id="parentForm">
