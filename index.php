@@ -1,20 +1,20 @@
 <?php
 
-include_once('include/config.php');
-include_once('include/functions.php');
-include_once('include/header.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/include/config.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/include/functions.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/include/header.php');
 
 if (isset($_GET['p']))
 {
-	$page = 'pages/' . $_GET['p'] . '.php';
+	$page = $_SERVER['DOCUMENT_ROOT'] . '/pages/' . $_GET['p'] . '.php';
 	if (file_exists($page))
 		include_once($page);
 	else
-		include_once('pages/notFound.php');
+		include_once($_SERVER['DOCUMENT_ROOT'] . '/pages/notFound.php');
 }
 else 
-	include_once('pages/home.php');
+	include_once($_SERVER['DOCUMENT_ROOT'] . '/pages/home.php');
 
-include_once('include/footer.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/include/footer.php');
 
 ?>
