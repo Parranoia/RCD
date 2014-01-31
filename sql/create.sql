@@ -10,6 +10,8 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+USE RCD;
+
 -- Dumping structure for table rcd.forgot_password
 DROP TABLE IF EXISTS `forgot_password`;
 CREATE TABLE IF NOT EXISTS `forgot_password` (
@@ -22,7 +24,6 @@ CREATE TABLE IF NOT EXISTS `forgot_password` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
-
 
 -- Dumping structure for table rcd.users
 DROP TABLE IF EXISTS `users`;
@@ -37,6 +38,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- privilege 0 user 1 admin 2 superadmin
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `user` int(12)  unsigned NOT NULL DEFAULT '0',
+  `privilege` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  CONSTRAINT `admin_user_id` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
