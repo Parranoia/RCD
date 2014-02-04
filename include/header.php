@@ -4,12 +4,13 @@
         <title>Radford Child Development</title>
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="/css/default.css">
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>-->
+        <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <meta charset="utf-8">
         <meta name="keywords" content="radford, radford childcare, childcare, child care, daycare, radford daycare, radford child development, daycare">
         
-        <script type="text/javascript" src="/js/active.js"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
     </head>
     <body>
         <?php 
