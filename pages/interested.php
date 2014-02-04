@@ -7,7 +7,6 @@
 				<span class="error">Note: This does not guarantee a spot, it is only showing your interest.</span>
 				</p>
 			</div>
-			<script type="text/javascript" src="/js/children_form.js"></script>
 			<form id="interested" class="centerform" method="POST" action="/interested">
 				<fieldset id="parentForm">
 					<legend>Parent Information</legend>

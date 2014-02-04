@@ -55,3 +55,27 @@ $('.dob').datepicker({
     changeYear: true,
     showAnim: 'clip'
 });
+
+/**
+ * Checks if the user entered any input at all before
+ * sending data to the server to process it.
+ */
+$(document).ready(function() {
+	$('#login_form').on('submit', function(event) {
+		var inputs = $('#login_form :input').not(':submit');
+		
+		var passed = true;
+		inputs.each(function(i, input) {
+			var error = $(document.createElement('div')).attr('class', 'error').text('This field was left blank');
+			if ($(input).next().text() == error.text())
+				$(input).next().remove();
+			if ($(input).val() == '') 
+			{
+				$(input).after(error);
+				passed = false;
+			}
+		});
+		
+		return passed;
+	});
+});
