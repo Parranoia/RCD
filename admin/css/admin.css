@@ -65,13 +65,15 @@ a
 	padding: 10px 15px;
 	text-decoration: none;
 	font-weight: bold;
-	color: #F0F0F0;
+	color: #A8EFFF;
+	/*color: #F0F0F0;*/
 }
 
 .nav ul li a:hover
 {
 	color: #5C5C5C;
-	background-color: #F0F0F0;
+	background-color: #A8EFFF;
+	/*background-color: #F0F0F0;*/
 }
 
 .content
