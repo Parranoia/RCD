@@ -4,6 +4,8 @@ $errors = array();
 
 if (!empty($_POST))
 {
+	include_once($_SERVER['DOCUMENT_ROOT'] . '/include/Child.class.php');
+	
 	if (empty($_POST['parent_name']))
 		$errors['parent_name'] = 'Please enter your full name';
 	else
@@ -16,13 +18,51 @@ if (!empty($_POST))
 	if (!preg_match('/^[a-zA-Z0-9 \'&\-]*$/', $_POST['employer']))
 		$errors['employer'] = 'Invalid employer. You entered a character that is not accepted';
 	
-	$num_children = $_POST['num_children'];
-	
-	for ($i = 1; $i <= $num_children; $i++)
-	{
-		$name = $_POST['child_name_' . $i];
-		$dob = $_POST['dob_' . $i];
-		$gender = $_POST['gender_' . $i];
+	// Only proceed if there weren't any problems with the parent's info
+	// No point in processing all of the children if the result is an error anyway
+	if (empty($errors))
+	{	
+		$num_children = $_POST['num_children'];
+		
+		$children = array();
+
+		for ($i = 1; $i <= $num_children; $i++)
+		{
+			$name = $_POST['child_name_' . $i];
+			$dob = $_POST['dob_' . $i];
+			// Not possible for gender to be empty
+			$gender = $_POST['gender_' . $i];
+			
+			if (empty($name))
+				$errors['child_name'] = 'You did not enter a child\'s name';
+			else 
+				if (!preg_match('/^[a-zA-Z \']+$/', $_POST['parent_name']))
+					$errors['child_name'] = 'The child\'s name you entered is invalid';
+			
+			// Check if the date of birth was selected
+			if (empty($dob))
+				$errors['dob'] = 'You did not enter your child\'s date of birth';
+			
+			if (!empty($errors))
+				break;
+			
+			$test = new Child($name, $dob, $gender);
+			
+			$children[] = new Child($name, $dob, $gender);
+		}
+		
+		// If we are still in the clear, send all the data to the database
+		if (empty($errors))
+		{
+			/*
+			 * foreach ($children as $child)
+			 * {
+			 * 		$child->getName();
+			 * 		$child->getDob();
+			 * 		$child->getGender();
+			 * }
+			 */
+		}
 	}
 }
 
