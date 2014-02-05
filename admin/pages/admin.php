@@ -1,3 +1,10 @@
 <?php
-    echo 'Admin Page';
+
 ?>
+		<p>Page Content</p>
+		<p>Page Content</p>
+		<p>Page Content</p>
+		<p>Page Content</p>
+		<p>Page Content</p>
+		<p>Page Content</p>
+		<p>Page Content</p>
