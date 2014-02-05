@@ -13,12 +13,13 @@
             <h1>Administrator Control Panel</h1>
         </div>
         <div class="wrapper">
-	    	<div class="nav">
-	    		<ul>
-	    			<li><a href="#">Manage Users</a></li>
-	    			<li><a href="#">View Interested List</a></li>
-	    			<li><a href="#">Upload file</a></li>
-	    			<li><a href="#">Manage files</a></li>
-	    		</ul>
-	    	</div>
-	    	<div class="content">
+            <div class="nav">
+            	<ul>
+                    <li><a href="/admin/home">Home</a></li>
+                    <li><a href="#">Manage Users</a></li>
+                    <li><a href="#">View Interested List</a></li>
+                    <li><a href="#">Upload file</a></li>
+                    <li><a href="#">Manage files</a></li>
+            	</ul>
+            </div>
+            <div class="content">

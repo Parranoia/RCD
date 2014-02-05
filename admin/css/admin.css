@@ -46,6 +46,7 @@ a
 
 .nav ul
 {
+	min-height: 500px;
 	list-style: none;
 	padding: 0;
 	margin: 0;
