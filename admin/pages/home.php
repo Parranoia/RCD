@@ -4,6 +4,5 @@
                 <h3>User Statistics</h3>
                 <ul>
                     <li>Registered Users: 9</li>
-                    <li>Active Users: 1</li>
                     <li>Pending Users: 4</li>
                 </ul>

@@ -52,8 +52,8 @@ if (!empty($_POST))
 		}
 		
 		// If we are still in the clear, send all the data to the database
-		if (empty($errors))
-		{
+        if (empty($errors))
+        {
 			/*
 			 * foreach ($children as $child)
 			 * {
@@ -62,8 +62,73 @@ if (!empty($_POST))
 			 * 		$child->getGender();
 			 * }
 			 */
-		}
-	}
+            $query = 'INSERT INTO interested_parents (name, email, employer, num_children) VALUES ' .
+                '(:name, :email, :employer, :num_children)';
+             
+            $query_params = array(':name' => $_POST['parent_name'],
+                                  ':email' => $_POST['email'],
+                                  ':employer' => $_POST['employer'],
+                                  ':num_children' => $num_children);
+             
+            try
+            {
+                $stmt = $db->prepare($query);
+                $result = $stmt->execute($query_params);
+            }
+            catch (PDOException $e)
+            {
+                die();
+            }
+             
+            $query = 'SELECT id FROM interested_parents WHERE email = :email';
+             
+            $query_params = array(':email' => $_POST['email']);
+             
+             
+            try
+            {
+                $stmt = $db->prepare($query);
+                $result = $stmt->execute($query_params);
+            }
+            catch (PDOException $e)
+            {
+                die();
+            }
+             
+            $row = $stmt->fetch();
+            $parent_id = $row['id'];
+             
+             
+            $query = 'INSERT INTO interested_children (parent, name, dob, gender) VALUES ';
+             
+            for ($i = 1; $i <= $num_children; $i++)
+                $query .= '(:parent, :name' . $i . ', ' .
+                          ':dob' . $i . ', ' .
+                          ':gender' . $i . '), ';
+            $query = substr($query, 0, -2);
+             
+            $query_params = array();
+            $query_params[':parent'] = $parent_id;
+             
+            foreach ($children as $key => $child) 
+            {
+                $query_params[':name' . ($key + 1)] = $child->getName();
+                $query_params[':dob' . ($key + 1)] = $child->getDob();
+                $query_params[':gender' . ($key + 1)] = $child->getGender();
+            }
+             
+            try
+            {
+                $stmt = $db->prepare($query);
+                $result = $stmt->execute($query_params);
+            }
+            catch (PDOException $e)
+            {
+                die();
+            }
+             
+        }
+    }
 }
 
 ?>
