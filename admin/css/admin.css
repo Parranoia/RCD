@@ -39,9 +39,10 @@ a
 .nav
 {
 	background-color: #5C5C5C;
-	display: table-cell;
+	display: inline-block;
+	/*display: table-cell;*/
 	border-right: #4F5155 solid 2px;
-	width: 170px;
+	width: 190px;
 }
 
 .nav ul
@@ -54,15 +55,17 @@ a
 
 .nav ul li
 {
+	/*
 	position: relative;
-	top: -4px;
+		top: -4px;*/
+	
 	border-bottom: #F0F0F0 solid 1px;
 }
 
 .nav ul li a
 {
 	display: inline-block;
-	width: 170px;
+	width: 160px;
 	padding: 10px 15px;
 	text-decoration: none;
 	font-weight: bold;
@@ -80,8 +83,9 @@ a
 .content
 {
 	margin: 15px;
-	display: table-cell;
-	padding: 0 15px 0 15px;
+	display: inline-block;
+	/*display: table-cell;*/
+	vertical-align: top;
 }
 
 .footer
@@ -95,4 +99,42 @@ a
 {
     font-size: 10px;
     text-align: center;
+}
+
+table
+{
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-spacing: 0;
+    border: black solid 1px;
+    border-collapse: separate;
+}
+
+th
+{
+    background-color: #4B78A1;
+    color: #EBEBEB;
+    border-bottom: black solid 1px;
+}
+
+th:first-child
+{
+    border-top-left-radius: 10px;
+}
+
+th:last-child
+{
+    border-top-right-radius: 10px;
+    border-right: none;
+}
+
+tr > *
+{
+    border-right: black solid 1px;
+    padding: 5px 15px;
+}
+
+tr > td:last-child
+{
+    border-right: none;
 }
