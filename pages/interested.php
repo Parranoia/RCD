@@ -54,37 +54,10 @@ if (!empty($_POST))
 		// If we are still in the clear, send all the data to the database
         if (empty($errors))
         {
-			/*
-			 * foreach ($children as $child)
-			 * {
-			 * 		$child->getName();
-			 * 		$child->getDob();
-			 * 		$child->getGender();
-			 * }
-			 */
-            $query = 'INSERT INTO interested_parents (name, email, employer, num_children) VALUES ' .
-                '(:name, :email, :employer, :num_children)';
-             
-            $query_params = array(':name' => $_POST['parent_name'],
-                                  ':email' => $_POST['email'],
-                                  ':employer' => $_POST['employer'],
-                                  ':num_children' => $num_children);
-             
-            try
-            {
-                $stmt = $db->prepare($query);
-                $result = $stmt->execute($query_params);
-            }
-            catch (PDOException $e)
-            {
-                die();
-            }
-             
-            $query = 'SELECT id FROM interested_parents WHERE email = :email';
-             
+			$query = 'SELECT 1 FROM interested_parents WHERE email = :email';
+            
             $query_params = array(':email' => $_POST['email']);
-             
-             
+            
             try
             {
                 $stmt = $db->prepare($query);
@@ -94,39 +67,79 @@ if (!empty($_POST))
             {
                 die();
             }
-             
-            $row = $stmt->fetch();
-            $parent_id = $row['id'];
-             
-             
-            $query = 'INSERT INTO interested_children (parent, name, dob, gender) VALUES ';
-             
-            for ($i = 1; $i <= $num_children; $i++)
-                $query .= '(:parent, :name' . $i . ', ' .
-                          ':dob' . $i . ', ' .
-                          ':gender' . $i . '), ';
-            $query = substr($query, 0, -2);
-             
-            $query_params = array();
-            $query_params[':parent'] = $parent_id;
-             
-            foreach ($children as $key => $child) 
+            
+            if (!empty($stmt->fetch()))
             {
-                $query_params[':name' . ($key + 1)] = $child->getName();
-                $query_params[':dob' . ($key + 1)] = $child->getDob();
-                $query_params[':gender' . ($key + 1)] = $child->getGender();
+                $errors['email'] = 'Someone has already registered with this email address';
             }
-             
-            try
+            else 
             {
-                $stmt = $db->prepare($query);
-                $result = $stmt->execute($query_params);
-            }
-            catch (PDOException $e)
-            {
-                die();
-            }
-             
+                $query = 'INSERT INTO interested_parents (name, email, employer, num_children) VALUES ' .
+                    '(:name, :email, :employer, :num_children)';
+                 
+                $query_params = array(':name' => $_POST['parent_name'],
+                                      ':email' => $_POST['email'],
+                                      ':employer' => $_POST['employer'],
+                                      ':num_children' => $num_children);
+                 
+                try
+                {
+                    $stmt = $db->prepare($query);
+                    $result = $stmt->execute($query_params);
+                }
+                catch (PDOException $e)
+                {
+                    die();
+                }
+                 
+                $query = 'SELECT id FROM interested_parents WHERE email = :email';
+                 
+                $query_params = array(':email' => $_POST['email']);
+                 
+                 
+                try
+                {
+                    $stmt = $db->prepare($query);
+                    $result = $stmt->execute($query_params);
+                }
+                catch (PDOException $e)
+                {
+                    die();
+                }
+                 
+                $row = $stmt->fetch();
+                $parent_id = $row['id'];
+                 
+                 
+                $query = 'INSERT INTO interested_children (parent, name, dob, gender) VALUES ';
+                 
+                for ($i = 1; $i <= $num_children; $i++)
+                    $query .= '(:parent, :name' . $i . ', ' .
+                              ':dob' . $i . ', ' .
+                              ':gender' . $i . '), ';
+                $query = substr($query, 0, -2);
+                 
+                $query_params = array();
+                $query_params[':parent'] = $parent_id;
+                 
+                foreach ($children as $key => $child) 
+                {
+                    $query_params[':name' . ($key + 1)] = $child->getName();
+                    $query_params[':dob' . ($key + 1)] = $child->getDob();
+                    $query_params[':gender' . ($key + 1)] = $child->getGender();
+                }
+                 
+                try
+                {
+                    $stmt = $db->prepare($query);
+                    $result = $stmt->execute($query_params);
+                }
+                catch (PDOException $e)
+                {
+                    die();
+                }
+               
+             } 
         }
     }
 }
@@ -141,8 +154,20 @@ if (!empty($_POST))
 			<form id="interested" class="centerform" method="POST" action="/interested">
 				<fieldset id="parentForm">
 					<legend>Parent Information</legend>
+					<?php
+                        if (!empty($errors['parent_name']))
+                            print('<div class=\"error\">' . $errors['parent_name'] . '</div>');
+					?>
 					<input type="text" name="parent_name" placeholder="Parent's full name" maxlength="50" required>
+					<?php
+                        if (!empty($errors['email']))
+                            print('<div class=\"error\">' . $errors['email'] . '</div>');
+                    ?>
 					<input type="text" name="email" placeholder="Email Address" maxlenth="50" required>
+					<?php
+                        if (!empty($errors['employer']))
+                            print('<div class=\"error\">' . $errors['employer'] . '</div>');
+                    ?>
 					<input type="text" name="employer" placeholder="Current Employer" maxlength="100">
 					<span class="small">How many children are you interested in enrolling?<br></span>
 					<select id="num_children" name="num_children" required>
@@ -154,6 +179,12 @@ if (!empty($_POST))
 						<option value="6">6</option>
 					</select>
 				</fieldset>
+				<?php
+                    if (!empty($errors['child_name']))
+                        print('<div class=\"error\">' . $errors['child_name'] . '</div>');
+                    if (!empty($errors['dob']))
+                        print('<div class=\"error\">' . $errors['dob'] . '</div>');
+                ?>
 				<fieldset id="childForm_1">
 					<legend>Child #1</legend>
 					<input type="text" name="child_name_1" placeholder="Child's full name" maxlength="50" required>
