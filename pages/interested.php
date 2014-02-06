@@ -1,5 +1,136 @@
 <?php
 
+$errors = array();
+
+if (!empty($_POST))
+{
+	include_once($_SERVER['DOCUMENT_ROOT'] . '/include/Child.class.php');
+	
+	if (empty($_POST['parent_name']))
+		$errors['parent_name'] = 'Please enter your full name';
+	else
+		if (!preg_match('/^[a-zA-Z \']+$/', $_POST['parent_name']))
+			$errors['parent_name'] = 'The name you entered is invalid';
+	
+	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+        $errors["email"] = "Invalid email";
+	
+	if (!preg_match('/^[a-zA-Z0-9 \'&\-]*$/', $_POST['employer']))
+		$errors['employer'] = 'Invalid employer. You entered a character that is not accepted';
+	
+	// Only proceed if there weren't any problems with the parent's info
+	// No point in processing all of the children if the result is an error anyway
+	if (empty($errors))
+	{	
+		$num_children = $_POST['num_children'];
+		
+		$children = array();
+
+		for ($i = 1; $i <= $num_children; $i++)
+		{
+			$name = $_POST['child_name_' . $i];
+			$dob = $_POST['dob_' . $i];
+			// Not possible for gender to be empty
+			$gender = $_POST['gender_' . $i];
+			
+			if (empty($name))
+				$errors['child_name'] = 'You did not enter a child\'s name';
+			else 
+				if (!preg_match('/^[a-zA-Z \']+$/', $_POST['parent_name']))
+					$errors['child_name'] = 'The child\'s name you entered is invalid';
+			
+			// Check if the date of birth was selected
+			if (empty($dob))
+				$errors['dob'] = 'You did not enter your child\'s date of birth';
+			
+			if (!empty($errors))
+				break;
+			
+			$test = new Child($name, $dob, $gender);
+			
+			$children[] = new Child($name, $dob, $gender);
+		}
+		
+		// If we are still in the clear, send all the data to the database
+        if (empty($errors))
+        {
+			/*
+			 * foreach ($children as $child)
+			 * {
+			 * 		$child->getName();
+			 * 		$child->getDob();
+			 * 		$child->getGender();
+			 * }
+			 */
+            $query = 'INSERT INTO interested_parents (name, email, employer, num_children) VALUES ' .
+                '(:name, :email, :employer, :num_children)';
+             
+            $query_params = array(':name' => $_POST['parent_name'],
+                                  ':email' => $_POST['email'],
+                                  ':employer' => $_POST['employer'],
+                                  ':num_children' => $num_children);
+             
+            try
+            {
+                $stmt = $db->prepare($query);
+                $result = $stmt->execute($query_params);
+            }
+            catch (PDOException $e)
+            {
+                die();
+            }
+             
+            $query = 'SELECT id FROM interested_parents WHERE email = :email';
+             
+            $query_params = array(':email' => $_POST['email']);
+             
+             
+            try
+            {
+                $stmt = $db->prepare($query);
+                $result = $stmt->execute($query_params);
+            }
+            catch (PDOException $e)
+            {
+                die();
+            }
+             
+            $row = $stmt->fetch();
+            $parent_id = $row['id'];
+             
+             
+            $query = 'INSERT INTO interested_children (parent, name, dob, gender) VALUES ';
+             
+            for ($i = 1; $i <= $num_children; $i++)
+                $query .= '(:parent, :name' . $i . ', ' .
+                          ':dob' . $i . ', ' .
+                          ':gender' . $i . '), ';
+            $query = substr($query, 0, -2);
+             
+            $query_params = array();
+            $query_params[':parent'] = $parent_id;
+             
+            foreach ($children as $key => $child) 
+            {
+                $query_params[':name' . ($key + 1)] = $child->getName();
+                $query_params[':dob' . ($key + 1)] = $child->getDob();
+                $query_params[':gender' . ($key + 1)] = $child->getGender();
+            }
+             
+            try
+            {
+                $stmt = $db->prepare($query);
+                $result = $stmt->execute($query_params);
+            }
+            catch (PDOException $e)
+            {
+                die();
+            }
+             
+        }
+    }
+}
+
 ?>
 			<h1>Interested in Radford Child Development?</h1>
 			<div class="center">
@@ -10,9 +141,9 @@
 			<form id="interested" class="centerform" method="POST" action="/interested">
 				<fieldset id="parentForm">
 					<legend>Parent Information</legend>
-					<input type="text" name="parent_name" placeholder="Parent's full name" required>
-					<input type="text" name="email" placeholder="Email Address" required>
-					<input type="text" name="employer" placeholder="Current Employer">
+					<input type="text" name="parent_name" placeholder="Parent's full name" maxlength="50" required>
+					<input type="text" name="email" placeholder="Email Address" maxlenth="50" required>
+					<input type="text" name="employer" placeholder="Current Employer" maxlength="100">
 					<span class="small">How many children are you interested in enrolling?<br></span>
 					<select id="num_children" name="num_children" required>
 						<option value="1">1</option>
@@ -24,12 +155,13 @@
 					</select>
 				</fieldset>
 				<fieldset id="childForm_1">
-					<legend>Child # 1</legend>
-					<input type="text" name="child_name_1" placeholder="Child's full name">
-					<input type="text" class="dob" name="dob_1" placeholder="Date of Birth">
-					<select name="gender_1">
+					<legend>Child #1</legend>
+					<input type="text" name="child_name_1" placeholder="Child's full name" maxlength="50" required>
+					<input id="dob_1" type="text" class="dob" name="dob_1" placeholder="Date of Birth" maxlength="12" required>
+					<select name="gender_1" required>
 						<option value="Male">Male</option>
 						<option value="Female">Female</option>
 					</select>
 				</fieldset>
+				<input type="submit" value="Submit" />
 			</form>

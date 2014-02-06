@@ -25,7 +25,7 @@ if (isset($_GET['p']))
         include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/pages/notFound.php');
 }
 else 
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/pages/admin.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/pages/home.php');
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/include/footer.php');
 
