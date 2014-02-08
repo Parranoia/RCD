@@ -32,7 +32,7 @@ a
 
 .nav
 {
-	background-color: #5C5C5C;
+	background-color: #58595b;
 	display: inline-block;
 	border-right: #4F5155 solid 2px;
 	width: 190px;
@@ -106,8 +106,8 @@ th
     color: #EBEBEB;
     font-weight: 400;
     border-right: 1px solid #46484D;
-    padding: 10px;
-    border-top:none;
+    padding: 10px 15px;
+    /*border-top:none;*/
 }
 
 th:first-child
