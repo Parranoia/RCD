@@ -16,5 +16,3 @@ else
 	include_once($_SERVER['DOCUMENT_ROOT'] . '/pages/home.php');
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/include/footer.php');
-
-?>

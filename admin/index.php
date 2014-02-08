@@ -28,5 +28,3 @@ else
     include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/pages/home.php');
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/include/footer.php');
-
-?>

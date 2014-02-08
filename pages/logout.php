@@ -10,5 +10,3 @@
     
     redirect();
     die();
-	
-?>

@@ -68,7 +68,7 @@ if (!empty($_POST))
                 die();
             }
             
-            if (!empty($stmt->fetch()))
+            if ($stmt->fetch())
             {
                 $errors['email'] = 'Someone has already registered with this email address';
             }
