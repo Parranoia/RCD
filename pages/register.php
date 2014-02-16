@@ -194,5 +194,5 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key='
                 ?>
                 <input type="password" maxlength="18" name="password" placeholder="Password" />
                 <input type="password" maxlength="18" name="pass_confirm" placeholder="Confirm Password" />
-                <input style="width:304px" type="submit" value="Register" />
+                <input type="submit" value="Register" />
             </form>

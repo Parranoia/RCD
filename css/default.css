@@ -222,11 +222,12 @@ a.donate
 	width: 350px;
     margin: 20px auto 0;
 }
-.centerform input
+
+/*.centerform input
 {
     width: inherit;
     box-sizing: border-box;
-}
+}*/
 
 .postinfo
 {
@@ -265,7 +266,19 @@ a.donate
 	color: red;
 }
 
-input[type=text], input[type=password]
+input
+{
+    box-sizing: border-box;
+    width: inherit;
+}
+
+fieldset
+{
+    box-sizing: border-box;
+    width: 100%;
+}
+
+input[type=text], input[type=password], input[type=email]
 {
     border-radius: 5px;
     border: 1px #BBB solid;
