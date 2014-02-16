@@ -52,7 +52,7 @@ body
 {
     list-style: none;
     padding-top: 15px;
-    padding-left: 0px;
+    padding-left: 0;
 }
 
 #nav ul li
@@ -99,7 +99,6 @@ a
     font-weight: bold;
     margin: 0 0 14px 0;
     padding: 14px 15px 10px 15px;
-    text-align: center;
 }
 
 #content img
@@ -143,25 +142,12 @@ a
 
 #donate th
 {
-    padding: 0px;
+    padding: 0;
 }
 
 td.donate
 {
     text-align: center;
-}
-
-#donate-instruction
-{
-    padding-bottom: 20px;
-    padding-top: 20px;
-    text-align: center;   
-}
-
-#donate-instruction a.donate
-{
-    padding-right: 10%;
-    padding-left: 10%;
 }
 
 a.donate

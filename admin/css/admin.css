@@ -13,12 +13,6 @@ a
     color: #4B78A1;
 }
 
-.clear
-{
-    clear: both;  
-    overflow: hidden;
-}
-
 .header
 {
 	background: -webkit-linear-gradient(top, #3B3B3B, #212121);
