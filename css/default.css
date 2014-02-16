@@ -216,14 +216,16 @@ a.donate
     clear: both;  
     overflow: hidden;
 }
+
 .centerform
 {
-	width: 300px;
+	width: 350px;
     margin: 20px auto 0;
 }
 .centerform input
 {
-	width: 300px;
+    width: inherit;
+    box-sizing: border-box;
 }
 
 .postinfo
@@ -261,4 +263,20 @@ a.donate
 {
 	font-size: 11px;
 	color: red;
+}
+
+input[type=text], input[type=password]
+{
+    border-radius: 5px;
+    border: 1px #BBB solid;
+    padding: 5px;
+}
+
+input[type=submit]
+{
+    border: none;   
+    color: #EEE;
+    background: #4B78A1;
+    border-radius: 5px;
+    padding: 5px;
 }
