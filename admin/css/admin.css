@@ -1,6 +1,7 @@
 body
 {
-    background-color: #EBEBEB;
+    /*background-color: #EBEBEB;*/
+    background-color: #FAFAFA;
     margin: 0;
     font: 14px/20px normal Helvetica, Arial, sans-serif;
     color: #4F5155;
@@ -38,7 +39,8 @@ a
 
 .nav
 {
-	background-color: #58595b;
+	/*background-color: #58595b;*/
+	background-color: #1C1B1A;
 	display: inline-block;
 	border-right: #4F5155 solid 2px;
 	width: 190px;
@@ -54,7 +56,7 @@ a
 
 .nav ul li
 {	
-	border-bottom: #F0F0F0 solid 1px;
+	border-bottom: #A8A8A8 solid 1px;
 }
 
 .nav ul li a
@@ -63,14 +65,14 @@ a
 	width: 160px;
 	padding: 10px 15px;
 	text-decoration: none;
-	color: #A8EFFF;
+	color: white;
 }
 
 .nav ul li a:hover
 {
     font-weight: bold;
-	color: #5C5C5C;
-	background-color: #A8EFFF;
+	color: #1C1B1A;
+	background-color: white;
 	/*background-color: #F0F0F0;*/
 }
 

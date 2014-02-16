@@ -9,9 +9,9 @@
         <meta name="keywords" content="radford, radford childcare, childcare, child care, daycare, radford daycare, radford child development, daycare">
     </head>
     <body>
-    	<div class="header">
+    	<!-- <div class="header">
             <h1>Administrator Control Panel</h1>
-        </div>
+        </div> -->
         <div class="wrapper">
             <div class="nav">
             	<ul>
