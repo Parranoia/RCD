@@ -66,19 +66,19 @@ foreach($rows as $row)
                         <th>Recently Registered Users</th>
                         <th>Recently Interested Parents</th>
                     </tr>
-                    <tr>
-                        <td>Registered Users: <?php echo $users_r ?></td>
-                        <td><?php echo $recently_registered[0] ?></td>
-                        <td><?php echo $recent_parents[0] ?></td>
-                    </tr>
-                    <tr>
-                        <td>Pending Users: <?php echo $users_p ?></td>
-                        <td><?php echo $recently_registered[1] ?></td>
-                        <td><?php echo $recent_parents[1] ?></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><?php echo $recently_registered[2] ?></td>
-                        <td><?php echo $recent_parents[2] ?></td>
-                    </tr>
+<?php
+    for ($i = 0; $i < 5; $i++)
+    {
+        echo "\t\t    <tr>\n";
+        echo "\t\t\t<td>";
+        if ($i === 0)
+            echo "Registered Users: " . $users_r;
+        if ($i === 1)
+            echo "Pending Users: " . $users_p;
+        echo "</td>\n";
+        echo "\t\t\t<td>" . $recently_registered[$i] . "</td>\n";
+        echo "\t\t\t<td>" . $recent_parents[$i] . "</td>\n";
+        echo "\t\t    </tr>\n";
+    }
+?>
                 </table>
