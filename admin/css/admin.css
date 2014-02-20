@@ -55,6 +55,7 @@ a
 
 .nav ul li a
 {
+    font: 14px/20px normal Helvetica, Arial, sans-serif;
 	display: inline-block;
 	width: 160px;
 	padding: 10px 15px;
@@ -138,5 +139,11 @@ td:first-child
 tr:last-child > td
 {
     border-bottom: 1px solid #46484D;
+}
+
+li a i.fa
+{
+    margin-left: -8px;
+    margin-right: 5px;
 }
 

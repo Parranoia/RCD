@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Radford Child Development</title>
+        <link rel="stylesheet" type="text/css" href="/font_awesome/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -15,11 +16,11 @@
         <div class="wrapper">
             <div class="nav">
             	<ul>
-                    <li><a href="/admin/home">Home</a></li>
-                    <li><a href="#">Manage Users</a></li>
-                    <li><a href="#">View Interested List</a></li>
-                    <li><a href="#">Upload file</a></li>
-                    <li><a href="#">Manage files</a></li>
+                    <li><a href="/admin/home"><i class="fa fa-home fa-fw"></i> Home</a></li>
+                    <li><a href="#"><i class="fa fa-users fa-fw"></i> Manage Users</a></li>
+                    <li><a href="#"><i class="fa fa-list fa-fw"></i> View Interested List</a></li>
+                    <li><a href="#"><i class="fa fa-arrow-up fa-fw"></i> Upload file</a></li>
+                    <li><a href="#"><i class="fa fa-cog fa-fw"></i> Manage files</a></li>
             	</ul>
             </div>
             <div class="content">
