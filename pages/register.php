@@ -113,7 +113,6 @@ if (!empty($_POST))
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = 'ssl';
 
-            // $mail->Host = 'rs14.websitehostserver.net';
             $mail->Host = 'server1.lazerhosting.com';
             $mail->Port = '465';
             $mail->Username = 'noreply@radfordchilddevelopment.org';

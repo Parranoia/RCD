@@ -1,6 +1,5 @@
 body
 {
-    /*background-color: #EBEBEB;*/
     background-color: #FAFAFA;
     margin: 0;
     font: 14px/20px normal Helvetica, Arial, sans-serif;
@@ -33,7 +32,6 @@ a
 
 .nav
 {
-	/*background-color: #58595b;*/
 	background-color: #1C1B1A;
 	display: inline-block;
 	border-right: #4F5155 solid 2px;
@@ -55,8 +53,7 @@ a
 
 .nav ul li a
 {
-    font: 14px/20px normal Helvetica, Arial, sans-serif;
-	display: inline-block;
+    display: inline-block;
 	width: 160px;
 	padding: 10px 15px;
 	text-decoration: none;
@@ -68,14 +65,12 @@ a
     font-weight: bold;
 	color: #1C1B1A;
 	background-color: white;
-	/*background-color: #F0F0F0;*/
 }
 
 .content
 {
 	margin: 15px;
 	display: inline-block;
-	/*display: table-cell;*/
 	vertical-align: top;
 }
 
@@ -110,7 +105,6 @@ th
     font-weight: 400;
     border-right: 1px solid #46484D;
     padding: 10px 15px;
-    /*border-top:none;*/
 }
 
 th:first-child
