@@ -13,7 +13,7 @@ $errors = array();
 // Check if data has been submitted or not
 if (!empty($_POST))
 {
-    $query = "SELECT id, username, password, salt, email, active FROM users WHERE username = :username";
+    $query = "SELECT id, username, password, salt, email, active, privilege FROM users WHERE username = :username";
     
     $query_params = array(':username' => $_POST['username']);
     
@@ -54,6 +54,8 @@ if (!empty($_POST))
             unset($row['salt']);
             unset($row['password']);
             
+            $row['privilege'] = (int)$row['privilege'];
+            
             $_SESSION['user'] = $row;
             
             redirect();
@@ -79,5 +81,5 @@ if (!empty($_POST))
                 <a class="small" href="#">Forgot Username?</a>
                 <input type="password" maxlength="18" name="password" placeholder="Password" />
                 <a class="small" href="/account/forgot_password">Forgot Password?</a>
-                <input style="width:304px" type="submit" value="Login" />
+                <input type="submit" value="Login" />
             </form>

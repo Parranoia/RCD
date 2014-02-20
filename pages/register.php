@@ -113,7 +113,7 @@ if (!empty($_POST))
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = 'ssl';
 
-            $mail->Host = 'rs14.websitehostserver.net';
+            $mail->Host = 'server1.lazerhosting.com';
             $mail->Port = '465';
             $mail->Username = 'noreply@radfordchilddevelopment.org';
             $mail->Password = 'passwordhere';
@@ -167,7 +167,7 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key='
                 }
                 
                 // Print out message to the user
-                print('<div class=\"postinfo\">Thank you for registering! An email has been sent to ' . $email . ' to activate your account</div>'); 
+                print("<div class=\"postinfo\">Thank you for registering! An email has been sent to " . $email . " to activate your account</div>"); 
             }
             
         }
@@ -193,5 +193,5 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key='
                 ?>
                 <input type="password" maxlength="18" name="password" placeholder="Password" />
                 <input type="password" maxlength="18" name="pass_confirm" placeholder="Confirm Password" />
-                <input style="width:304px" type="submit" value="Register" />
+                <input type="submit" value="Register" />
             </form>

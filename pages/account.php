@@ -13,5 +13,3 @@ else
 	else
 		include_once('pages/notFound.php');
 }
-
-?>

@@ -1,19 +1,21 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'] . '/include/functions.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/include/config.php');
 
-/*
- * Commented out while we are testing
-if (isset($_SESSION['user']))
+if (!isset($_SESSION['user']))
 {
     redirect();
     die();
 }
 else 
 {
-    // Check if they are admin  
+    if ($_SESSION['user']['privilege'] === 0)
+    {
+        redirect();
+        die();
+    }
 }
-*/
-include_once($_SERVER['DOCUMENT_ROOT'] . '/include/config.php');
+
 include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/include/header.php');
 
 if (isset($_GET['p']))
@@ -28,5 +30,3 @@ else
     include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/pages/home.php');
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/admin/include/footer.php');
-
-?>

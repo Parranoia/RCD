@@ -50,5 +50,3 @@ else
     redirect();
     die();
 }
-
-?>
