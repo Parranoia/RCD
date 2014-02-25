@@ -59,6 +59,44 @@ $rows = $stmt->fetchAll();
 
 foreach($rows as $row)
     $recent_parents[] = $row['name'];
+
+$num_parents = count($rows);
+
+$query = 'SELECT COUNT(*) FROM interested_children';
+try
+{
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+}
+catch(PDOException $e)
+{
+    die();
+}
+$row = $stmt->fetch();
+$num_children = $row['COUNT(*)'];
+
+$query = 'SELECT gender, COUNT(*) FROM interested_children GROUP BY gender';
+try
+{
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+}
+catch (PDOException $e)
+{
+    die();
+}
+$rows = $stmt->fetchAll();
+
+if ($rows[0]['gender'] === 'Male')
+{
+    $num_male = $rows[0]['COUNT(*)'];
+    $num_female = $rows[1]['COUNT(*)'];
+}
+else
+{
+    $num_female = $rows[0]['COUNT(*)'];
+    $num_male = $rows[1]['COUNT(*)'];
+}
 ?>
                 <table>
                     <tr>
@@ -75,6 +113,12 @@ foreach($rows as $row)
             echo "Registered Users: " . $users_r;
         if ($i === 1)
             echo "Pending Users: " . $users_p;
+        if ($i === 2)
+            echo "Interested Parents: " . $num_parents;
+        if ($i === 3)
+            echo "Interested Children: " . $num_children;
+        if ($i === 4)
+            echo "Childen Ratio (M/F): " . $num_male . "/" . $num_female;
         echo "</td>\n";
         echo "\t\t\t<td>" . $recently_registered[$i] . "</td>\n";
         echo "\t\t\t<td>" . $recent_parents[$i] . "</td>\n";
