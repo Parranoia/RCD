@@ -2,14 +2,14 @@
 
 ?>
                 <h1>Interested Page...</h1>
-                <div class="toggle">Parent 1</div>
-                <div>This text is hidden</div>
-                <div class="toggle">Parent #2</div>
-                <div>This is the second parent's kid</div>
+                <div class="parent_info">Parent 1</div>
+                <div class="child_info">This text is hidden</div>
+                <div class="parent_info">Parent #2</div>
+                <div class="child_info">This is the second parent's kid</div>
                 
                 <script>
-                $('.toggle').next().hide();
-                $('.toggle').click(function() {
+                $('.parent_info').next().hide();
+                $('.parent_info').click(function() {
                     $(this).next().slideToggle("slow"); 
                 });
                 </script>
