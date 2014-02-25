@@ -88,6 +88,12 @@ a
 
 table
 {
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-top-right-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+    -o-border-top-right-radius: 5px;
+    -o-border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     border-spacing: 0;
@@ -110,13 +116,19 @@ th
 th:first-child
 {
     border-left: none;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+    -o-border-top-left-radius: 5px;
     border-top-left-radius: 5px;
 }
 
 th:last-child
 {
-    border-top-right-radius: 5px;
     border-right: none;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-top-right-radius: 5px;
+    -o-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 tr > :not(th)
