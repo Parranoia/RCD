@@ -88,3 +88,26 @@ $(document).ready(function() {
 		return passed;
 	});
 });
+
+/**
+ * Gets the version of IE running. If it is not IE or IE 10+ -1 is returned 
+ */
+function getIEVersion() 
+{
+    if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)) 
+    { 
+        var ieversion = new Number(RegExp.$1); // capture x.x portion and store as a number
+        return ieversion;
+    }
+    return -1;
+}
+
+$(document).ready(function() {
+    if (getIEVersion() != -1 && getIEVersion() < 10)
+    {
+        var inputs = $('input[type=text], input[type=password]'); 
+        inputs.each(function(i, input) {
+            $('<br><label>' + $(input).attr('placeholder') + '</label>').insertBefore(input); 
+        });
+    }      
+});
