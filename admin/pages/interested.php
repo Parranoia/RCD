@@ -10,7 +10,13 @@
                 </div>
                 <div class="child_info">
                     <ul>
-                        <li>Child 1</li>
+                        <li>
+                            Child 1
+                            <ul>
+                                <li>DOB: 1/18/13</li>
+                                <li>Gender: Male</li>
+                            </ul>    
+                        </li>
                         <li>Child 2</li>
                         <li>Child 3</li>
                         <li>Child 4</li>

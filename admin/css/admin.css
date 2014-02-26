@@ -199,10 +199,10 @@ li a i.fa
     /*width: 100%;*/
 }
 
-.child_info ul
+.child_info > ul
 {
     list-style: none;
-    padding: 0;
+    padding: 0 0 0 10px;
 }
 
 .toggled
