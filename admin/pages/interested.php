@@ -32,7 +32,8 @@
                 <script>
                 
                 $('.parent_info').click(function() {
-                    $(this).next().slideToggle('slow'); 
+                    $(this).next().slideToggle('slow');
+                    //$(this).next().width($(this).width()); 
                     $(this).toggleClass('toggled');
                     $(this).children(':nth-child(4)').toggleClass('fa-chevron-right fa-chevron-down');
                 });
