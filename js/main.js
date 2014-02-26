@@ -96,12 +96,17 @@ function getIEVersion()
 {
     if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)) 
     { 
-        var ieversion = new Number(RegExp.$1); // capture x.x portion and store as a number
+        var ieversion = new Number(RegExp.$1); 
         return ieversion;
     }
     return -1;
 }
 
+/**
+ * Function only executes if the browser is running a version of IE earlier than 10
+ * It iterates through all input fields of either type text or type password then
+ * takes their placeholder attribute and places it as a label above the input field 
+ */
 $(document).ready(function() {
     if (getIEVersion() != -1 && getIEVersion() < 10)
     {
