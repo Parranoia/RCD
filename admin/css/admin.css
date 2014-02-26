@@ -168,8 +168,8 @@ li a i.fa
     background: linear-gradient(top, #3B3B3B, #212121);
     color: #EBEBEB; 
     padding: 0 10px;  
-    /*width: 100%;*/
-    width: 450px;
+    width: 100%;
+    /*width: 500px;*/
 }
 
 .parent_info p
@@ -196,7 +196,7 @@ li a i.fa
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     margin-bottom: 2px;
-    /*width: 100%;*/
+    width: 100%;
 }
 
 .child_info > ul
