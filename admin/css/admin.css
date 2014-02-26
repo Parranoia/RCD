@@ -153,3 +153,53 @@ li a i.fa
     margin-right: 5px;
 }
 
+.clear
+{
+    clear: both;
+}
+
+.parent_info
+{
+    border-radius: 10px;
+    background: -webkit-linear-gradient(top, #3B3B3B, #212121);
+    background: -moz-linear-gradient(top, #3B3B3B, #212121);
+    background: -o-linear-gradient(top, #3B3B3B, #212121);
+    background: -ms-linear-gradient(top, #3B3B3B, #212121);
+    background: linear-gradient(top, #3B3B3B, #212121);
+    color: #EBEBEB; 
+    padding: 0 10px;  
+    width: 100%;
+}
+
+.parent_info p
+{
+    display: inline-block;
+    padding: 0 10px;
+}
+
+
+.parent_info i
+{
+    position: relative; 
+    float: right; 
+    top: 17px;
+}
+
+
+.child_info
+{
+    display: none;
+    background: #4F5155;
+    color: #EBEBEB;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+.toggled
+{
+    border-bottom-left-radius: 0; 
+    border-bottom-right-radius: 0;  
+}
