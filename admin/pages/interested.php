@@ -48,7 +48,10 @@ function print_interested_list($parents, $children)
         echo '<p>' . $parent['name'] . '</p>';
         echo '<p>' . $parent['email'] . '</p>';
         if ($parent['employer']) echo '<p>' . $parent['employer'] . '</p>';
-        echo '<p>' . $parent['num_children'] . ' Children</p>';
+        if ($parent['num_children'] > 1)
+            echo '<p>' . $parent['num_children'] . ' Children</p>';
+        else 
+            echo '<p>' . $parent['num_children'] . ' Child</p>';
         echo '<i class="fa fa-chevron-right"></i>';
         echo '</div>';
         
