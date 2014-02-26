@@ -44,39 +44,39 @@ function print_interested_list($parents, $children)
 {
     foreach ($parents as $parent)
     {
-        echo '<div class="parent_info">';
-        echo '<p>' . $parent['name'] . '</p>';
-        echo '<p>' . $parent['email'] . '</p>';
-        if ($parent['employer']) echo '<p>' . $parent['employer'] . '</p>';
+        echo "\t\t<div class=\"parent_info\">\n";
+        echo "\t\t    <p>" . $parent['name'] . "</p>\n";
+        echo "\t\t    <p>" . $parent['email'] . "</p>\n";
+        if ($parent['employer']) echo "\t\t    <p>" . $parent['employer'] . "</p>\n";
         if ($parent['num_children'] > 1)
-            echo '<p>' . $parent['num_children'] . ' Children</p>';
+            echo "\t\t    <p>" . $parent['num_children'] . " Children</p>\n";
         else 
-            echo '<p>' . $parent['num_children'] . ' Child</p>';
-        echo '<i class="fa fa-chevron-right"></i>';
-        echo '</div>';
+            echo "\t\t    <p>" . $parent['num_children'] . " Child</p>\n";
+        echo "\t\t    <i class=\"fa fa-chevron-right\"></i>\n";
+        echo "\t\t</div>\n";
         
-        echo '<div class="child_info">';
-        echo '<ul>';
+        echo "\t\t<div class=\"child_info\">\n";
+        echo "\t\t    <ul>\n";
         
         $temp = $children[$parent['id']];        
         foreach ($temp as $child)
         {
-            echo '<li>';
-            echo $child->getName();
-            echo '<ul>';
-            echo '<li>' . $child->getDob() . '</li>';
-            echo '<li>' . $child->getGender() . '</li>';
-            echo '</ul>';
-            echo '<li>';            
+            echo "\t\t\t<li>";
+            echo $child->getName() . "\n";
+            echo "\t\t\t    <ul>\n";
+            echo "\t\t\t\t<li>" . $child->getDob() . "</li>\n";
+            echo "\t\t\t\t<li>" . $child->getGender() . "</li>\n";
+            echo "\t\t\t    </ul>\n";
+            echo "\t\t\t<li>\n";            
         }
-        echo '</ul>';
-        echo '</div>';
+        echo "\t\t    </ul>\n";
+        echo "\t\t</div>\n";
     }
 }
 
 ?>
                 <h1>Interested Page...</h1>
-                <?php print_interested_list($parents, $children); ?>
+<?php print_interested_list($parents, $children); ?>
                 
                 <script>
                 $('.parent_info').click(function() {
