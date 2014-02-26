@@ -1,5 +1,5 @@
 <?php
-    // error_reporting(E_ERROR | E_COMPILE_ERROR | E_CORE_ERROR);
+    error_reporting(E_ERROR | E_COMPILE_ERROR | E_CORE_ERROR);
 
     $username = "root";
     $password = "justwhatever1";

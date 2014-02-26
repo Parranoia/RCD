@@ -97,6 +97,11 @@ else
     $num_female = $rows[0]['COUNT(*)'];
     $num_male = $rows[1]['COUNT(*)'];
 }
+
+if (!$num_male)
+    $num_male = 0;
+if (!$num_female)
+    $num_female = 0;
 ?>
                 <table>
                     <tr>
