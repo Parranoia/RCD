@@ -77,9 +77,9 @@ if (!empty($_POST))
                             print ("<div class=\"error\">" . $error . "</div>\n\t\t\t");
                 ?>
             	<a class="small" href="/register">Don't have an account?</a>
-                <input type="text"  maxlength="15" name="username" placeholder="Username" value="<?php echo $user ?>" />
+                <input tabindex="1" type="text"  maxlength="15" name="username" placeholder="Username" value="<?php echo $user ?>" />
                 <a class="small" href="#">Forgot Username?</a>
-                <input type="password" maxlength="18" name="password" placeholder="Password" />
+                <input tabindex="2" type="password" maxlength="18" name="password" placeholder="Password" />
                 <a class="small" href="/account/forgot_password">Forgot Password?</a>
                 <input type="submit" value="Login" />
             </form>
