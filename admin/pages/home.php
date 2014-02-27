@@ -103,6 +103,7 @@ if (!$num_male)
 if (!$num_female)
     $num_female = 0;
 ?>
+                <h1>Home Page</h1>
                 <table>
                     <tr>
                         <th>User Statistics</th>

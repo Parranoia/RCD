@@ -75,7 +75,7 @@ function print_interested_list($parents, $children)
 }
 
 ?>
-                <h1>Interested Page...</h1>
+                <h1>Interested List</h1>
 <?php print_interested_list($parents, $children); ?>
                 
                 <script>
