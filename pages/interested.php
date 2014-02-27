@@ -142,7 +142,9 @@ if (!empty($_POST))
                 {
                     die();
                 }
-               
+                echo "<div class=\"postinfo\">Thank you for showing your interest in Radford Child Development!<br>You will be redirected in 5 seconds</div>";
+                redirect("/home", 5000);
+                die();
              } 
         }
     }
