@@ -27,6 +27,7 @@
                     <li><a href="/donate">Donate</a></li>
                     <li><a href="/articles">Articles</a></li>
                     <li><a href="/about">About Us</a></li>
+                    <li><a href="/interested">Interested</a></li>
                     <?php if (!isset($_SESSION['user'])) echo "<li><a href=\"/login\">Login</a></li>"; ?>
                 </ul>
                 <a class="donate" target="_blank"
