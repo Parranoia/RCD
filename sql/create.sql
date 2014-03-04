@@ -47,8 +47,9 @@ CREATE TABLE IF NOT EXISTS `interested_parents` (
    `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
    `name` varchar(255) NOT NULL,
    `email` varchar(255) NOT NULL,
-   `employer` varchar(255) NOT NULL,
-   `num_children` tinyint(2) NOT NULL,
+   `phone_number` varchar(12) NULL,
+   `employer` varchar(255) NULL,
+   `num_children` tinyint(2) UNSIGNED NOT NULL,
    PRIMARY KEY (`id`),
    UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

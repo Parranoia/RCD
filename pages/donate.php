@@ -29,3 +29,16 @@ For more information on the Foundation, visit <a href="https://cfnrv.org">cfnrv.
                             </td>
                         </tr>    
                     </table>
+                    <h3>Current Grant Activities</h3>
+                    <p>
+                        Radford Child Development is currently applying for external funds to cover the following costs:
+                        <ol>
+                            <li>Tuition Discounts for our low-wealth families</li>
+                            <li>Head Teacher and Teacher payments prior to opening</li>
+                            <li>Director and Assistant directory payment prior to opening</li>
+                            <li>Marketing</li>
+                            <li>Accountant services</li>
+                            <li>Teacher training expenses</li>
+                            <li>Teacher sign-up bonuses</li>
+                        </ol>
+                    </p>

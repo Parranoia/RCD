@@ -14,6 +14,9 @@ if (!empty($_POST))
 	
 	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
         $errors["email"] = "Invalid email";
+    
+    if (!preg_match('/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/', $_POST['phone']))
+        $errors['phone'] = 'Please use the correct format (XXX-XXX-XXXX)';
 	
 	if (!preg_match('/^[a-zA-Z0-9 \'&\-]*$/', $_POST['employer']))
 		$errors['employer'] = 'Invalid employer. You entered a character that is not accepted';
@@ -74,11 +77,12 @@ if (!empty($_POST))
             }
             else 
             {
-                $query = 'INSERT INTO interested_parents (name, email, employer, num_children) VALUES ' .
-                    '(:name, :email, :employer, :num_children)';
+                $query = 'INSERT INTO interested_parents (name, email, phone_number, employer, num_children) VALUES ' .
+                    '(:name, :email, :phone, :employer, :num_children)';
                  
                 $query_params = array(':name' => $_POST['parent_name'],
                                       ':email' => $_POST['email'],
+                                      ':phone' => $_POST['phone'],
                                       ':employer' => $_POST['employer'],
                                       ':num_children' => $num_children);
                  
@@ -138,7 +142,9 @@ if (!empty($_POST))
                 {
                     die();
                 }
-               
+                echo "<div class=\"postinfo\">Thank you for showing your interest in Radford Child Development!<br>You will be redirected in 5 seconds</div>";
+                redirect("/home", 5000);
+                die();
              } 
         }
     }
@@ -156,17 +162,22 @@ if (!empty($_POST))
 					<legend>Parent Information</legend>
 					<?php
                         if (!empty($errors['parent_name']))
-                            print('<div class=\"error\">' . $errors['parent_name'] . '</div>');
+                            print("<div class=\"error\">" . $errors['parent_name'] . '</div>');
 					?>
 					<input type="text" name="parent_name" placeholder="Parent's full name" maxlength="50" required>
 					<?php
                         if (!empty($errors['email']))
-                            print('<div class=\"error\">' . $errors['email'] . '</div>');
+                            print("<div class=\"error\">" . $errors['email'] . '</div>');
                     ?>
-					<input type="text" name="email" placeholder="Email Address" maxlenth="50" required>
+					<input type="text" name="email" placeholder="Email Address" maxlength="50" required>
+	                <?php 
+                        if (!empty($errors['phone']))
+                            print("<div class=\"error\">" . $errors['phone'] . "</div>");        
+                    ?>
+                    <input type="text" name="phone" placeholder="Phone Number (XXX-XXX-XXXX)" maxlength="12" required>
 					<?php
                         if (!empty($errors['employer']))
-                            print('<div class=\"error\">' . $errors['employer'] . '</div>');
+                            print("<div class=\"error\">" . $errors['employer'] . '</div>');
                     ?>
 					<input type="text" name="employer" placeholder="Current Employer" maxlength="100">
 					<span class="small">How many children are you interested in enrolling?<br></span>

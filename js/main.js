@@ -88,3 +88,31 @@ $(document).ready(function() {
 		return passed;
 	});
 });
+
+/**
+ * Gets the version of IE running. If it is not IE or IE 10+ -1 is returned 
+ */
+function getIEVersion() 
+{
+    if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)) 
+    { 
+        var ieversion = new Number(RegExp.$1); 
+        return ieversion;
+    }
+    return -1;
+}
+
+/**
+ * Function only executes if the browser is running a version of IE earlier than 10
+ * It iterates through all input fields of either type text or type password then
+ * takes their placeholder attribute and places it as a label above the input field 
+ */
+$(document).ready(function() {
+    if (getIEVersion() != -1 && getIEVersion() < 10)
+    {
+        var inputs = $('input[type=text], input[type=password]'); 
+        inputs.each(function(i, input) {
+            $('<br><label>' + $(input).attr('placeholder') + '</label>').insertBefore(input); 
+        });
+    }      
+});
