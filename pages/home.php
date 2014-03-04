@@ -1,5 +1,4 @@
 					<h1 style="margin-bottom:-20px;">Quality Childcare in Radford</h1>
-                	<h1>Opening August 2014!</h1>
                 	<img src="images/child.jpg" align="middle" />
                 	
                     <h3>Mission Statement</h3>
@@ -14,7 +13,6 @@
                         <h3>Future Goals</h3>
                         <ul>
                             <li><a target="_blank" href="docs/pressrelease.pdf">Press Release</a></li>
-                            <li><a target="_blank" href="docs/RCDFlyer.pdf">RCD Flyer</a></li>
                             <li><a target="_blank" href="docs/RCDC.png">Future Building</a></li>
                         </ul> 
                     </div>

@@ -31,7 +31,7 @@ For more information on the Foundation, visit <a href="https://cfnrv.org">cfnrv.
                     </table>
                     <h3>Current Grant Activities</h3>
                     <p>
-                        RCD is currently applying external funding to cover the following costs:
+                        Radford Child Development is currently applying for external funds to cover the following costs:
                         <ol>
                             <li>Tuition Discounts for our low-wealth families</li>
                             <li>Head Teacher and Teacher payments prior to opening</li>
