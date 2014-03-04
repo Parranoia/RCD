@@ -210,3 +210,13 @@ li a i.fa
     border-bottom-left-radius: 0; 
     border-bottom-right-radius: 0;  
 }
+
+.center
+{
+    text-align: center;
+}
+
+td > a
+{
+    color: #4F5155;
+}

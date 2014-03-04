@@ -1,4 +1,4 @@
-					<h1 style="margin-bottom:-20px;">Quality Childcare in Radford</h1>
+					<h1>Quality Childcare in Radford</h1>
                 	<img src="images/child.jpg" align="middle" />
                 	
                     <h3>Mission Statement</h3>

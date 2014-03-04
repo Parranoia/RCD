@@ -15,7 +15,7 @@
             <div class="nav">
             	<ul>
                     <li><a href="/admin/home"><i class="fa fa-home fa-fw"></i> Home</a></li>
-                    <?php if ($_SESSION['user']['privilege'] === 2) print('<li><a href="/users"><i class="fa fa-users fa-fw"></i> Manage Users</a></li>'); ?>
+                    <?php if ($_SESSION['user']['privilege'] === 2) print('<li><a href="/admin/users"><i class="fa fa-users fa-fw"></i> Manage Users</a></li>'); ?>
                     <li><a href="/admin/interested"><i class="fa fa-list fa-fw"></i> View Interested List</a></li>
                     <li><a href="#"><i class="fa fa-arrow-up fa-fw"></i> Upload file</a></li>
                     <li><a href="#"><i class="fa fa-cog fa-fw"></i> Manage files</a></li>
