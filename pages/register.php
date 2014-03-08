@@ -113,11 +113,11 @@ if (!empty($_POST))
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = 'ssl';
 
-            $mail->Host = 'server1.lazerhosting.com';
-            $mail->Port = '465';
-            $mail->Username = 'noreply@radfordchilddevelopment.org';
-            $mail->Password = 'passwordhere';
-            $mail->From = 'noreply@radfordchilddevelopment.org';
+            $mail->Host = $email_config['email'];
+            $mail->Port = $email_config['port'];
+            $mail->Username = $email_config['username'];
+            $mail->Password = $email_config['password'];
+            $mail->From = $email_config['username'];
             
             $mail->FromName = 'Radford Child Development';
             $mail->Subject = 'Radford Child Development | Account Activation';

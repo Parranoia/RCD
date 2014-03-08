@@ -1,6 +1,13 @@
 <?php
     error_reporting(E_ERROR | E_COMPILE_ERROR | E_CORE_ERROR);
 
+    $email_config = array();
+    $email_config['host'] = 'www.example.com';
+    $email_config['port'] = 465;
+    $email_config['username'] = 'username@example.com';
+    $email_config['password'] = 'password';
+    
+
     $username = "root";
     $password = "justwhatever1";
     $host = "localhost";
