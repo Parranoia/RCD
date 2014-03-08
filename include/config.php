@@ -1,6 +1,8 @@
 <?php
     error_reporting(E_ERROR | E_COMPILE_ERROR | E_CORE_ERROR);
 
+    $require_verify_email = false; // Set to false if you don't need the user to activate their accounts
+
     $email_config = array();
     $email_config['host'] = 'www.example.com';
     $email_config['port'] = 465;

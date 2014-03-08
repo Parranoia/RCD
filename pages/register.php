@@ -103,46 +103,53 @@ if (!empty($_POST))
             $email_hash = md5(uniqid(rand(), true)); // Generate a hash to verify their email
             $salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647)); // This salt is used to encrypt the password
             
-            /**
-             * Sending Email
-             */
-            include_once('PHPMailer/class.phpmailer.php');
-            $mail = new PHPMailer();
+            $email_sent = true;
             
-            $mail->IsSMTP();
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = 'ssl';
-
-            $mail->Host = $email_config['email'];
-            $mail->Port = $email_config['port'];
-            $mail->Username = $email_config['username'];
-            $mail->Password = $email_config['password'];
-            $mail->From = $email_config['username'];
-            
-            $mail->FromName = 'Radford Child Development';
-            $mail->Subject = 'Radford Child Development | Account Activation';
-            
-            $message = 
-'Thank you for registering at Radford Child Development!
-Your account has been created and now just needs to verify this email.
-                
-Click the link below to activate your account
-http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key=' . $email_hash;
-            
-            $mail->Body = $message;
-            $mail->IsHTML(false);
-            
-            $mail->AddAddress($email, $_POST['username']);
-            /**
-             * End sending email
-             */
-            
-            if(!$mail->Send())
-                echo 'Error sending email';
-            else
+            if ($require_verify_email)
             {
-                $mail->ClearAddresses();                                
-                        
+                /**
+                 * Sending Email
+                 */
+                include_once('PHPMailer/class.phpmailer.php');
+                $mail = new PHPMailer();
+                
+                $mail->IsSMTP();
+                $mail->SMTPAuth = true;
+                $mail->SMTPSecure = 'ssl';
+    
+                $mail->Host = $email_config['email'];
+                $mail->Port = $email_config['port'];
+                $mail->Username = $email_config['username'];
+                $mail->Password = $email_config['password'];
+                $mail->From = $email_config['username'];
+                
+                $mail->FromName = 'Radford Child Development';
+                $mail->Subject = 'Radford Child Development | Account Activation';
+                
+                $message = 
+    'Thank you for registering at Radford Child Development!
+    Your account has been created and now just needs to verify this email.
+                    
+    Click the link below to activate your account
+    http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key=' . $email_hash;
+                
+                $mail->Body = $message;
+                $mail->IsHTML(false);
+                
+                $mail->AddAddress($email, $_POST['username']);
+                
+                $email_sent = $mail->Send();
+                if (!$email_sent)
+                    echo '<div class="error center">Error sending email</div>';
+                
+                $mail->ClearAddresses();
+                /**
+                 * End sending email
+                 */
+             }
+
+            if ($email_sent)
+            {
                 // If the mail was sent with no errors, create a user in the database
                 $query = "INSERT INTO users (username, password, salt, email, active, email_hash) VALUES
                             (:username, :password, :salt, :email, :active, :hash)";
@@ -153,7 +160,7 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key='
                                       ':password' => $password,
                                       ':salt'     => $salt,
                                       ':email'    => $_POST['email'],
-                                      ':active'   => 0,
+                                      ':active'   => $require_verify_email === true ? 0 : 1,
                                       ':hash'     => $email_hash);
                 
                 try
@@ -166,10 +173,11 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/verify?email=' . $email . '&key='
                     die();   
                 }
                 
-                // Print out message to the user
-                print("<div class=\"postinfo\">Thank you for registering! An email has been sent to " . $email . " to activate your account</div>"); 
+                if ($require_verify_email)
+                    echo "<div class=\"postinfo\">Thank you for registering! An email has been sent to " . $email . " to activate your account</div>"; 
+                else
+                    echo "<div class=\"postinfo\">Thank you for registering! You may now login to your account</div>";
             }
-            
         }
     }
 }
