@@ -1,4 +1,8 @@
 					<h1>Articles</h1>
+					<h3>2014</h3>
+					<ul>
+					    <li><a target="_blank" href="/docs/pressrelease.pdf">Press Release</a></li>
+					</ul>
                     <h3>2013</h3>
                     <ul>
                         <li><a target="_blank" href="http://blogs.roanoke.com/theburgs/news/2013/10/12/new-child-care-center-to-open-in-radford/">Roanoke Times - New Child Care</a></li>

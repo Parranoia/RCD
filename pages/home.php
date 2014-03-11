@@ -1,9 +1,14 @@
 					<h1>Quality Childcare in Radford</h1>
+					<h1>Opening 2015!</h1>
                 	<img src="images/child.jpg" align="middle" />
                 	
                     <h3>Mission Statement</h3>
                     <p>
                         To develop and/or support excellent, nationally accredited child development program(s) in Radford that embodies the best practices of early childhood care and education. 
+                    </p>
+                    <h3>Request for Proposals</h3>
+                    <p>
+                        RCD Issued a request for proposals (<a href="/docs/RFP.pdf">RFP</a>) from qualified local, regional and national child care providers to open a new facility in Radford. A grant of up to $210,000 will be awarded. Visit the online RFP for details and deadlines.
                     </p>
                     <h3>Results of our Needs Assessment</h3>
                     <p>

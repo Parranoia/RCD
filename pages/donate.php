@@ -1,4 +1,4 @@
-					<h1>Help us to Make This New Facility a Reality!</h1>
+					<h1>Help us to Make This New Facility a Reality!</h1><br>
                     <h3>Community Foundation of the New River Valley</h3>
                     <p>
                         Radford Child Development, Inc. is pleased to accept donations through a partnership with the Community Foundation of the New River Valley, a public not-for-profit organization benefiting the New River Valley. 
