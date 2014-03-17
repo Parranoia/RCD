@@ -12,6 +12,45 @@ a
     color: #4B78A1;
 }
 
+input, select
+{
+    box-sizing: border-box;
+    width: inherit;
+}
+
+input[type=text], input[type=password], input[type=email], select
+{
+    display:block;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px #BBB solid;
+    padding: 5px;
+}
+
+input[type=submit]
+{
+    border: none;   
+    color: #EEE;
+    background: #4B78A1;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#user_form
+{
+    width: 400px;
+}
+
+input:disabled
+{
+    background: #98ACBD;
+}
+
 .header
 {
 	background: -webkit-linear-gradient(top, #3B3B3B, #212121);
@@ -219,4 +258,10 @@ li a i.fa
 td > a
 {
     color: #4F5155;
+}
+
+.error
+{
+    font-size: 11px;
+    color: red;
 }

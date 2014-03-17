@@ -66,7 +66,48 @@ CREATE TABLE IF NOT EXISTS `interested_children` (
    CONSTRAINT `parent_id` FOREIGN KEY (`parent`) REFERENCES `interested_parents` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping structure for table rcd.pages
+DROP TABLE IF EXISTS `pages`;
+CREATE TABLE IF NOT EXISTS `pages` (
+  `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `header` varchar(600) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table rcd.pages: ~1 rows (approximately)
+DELETE FROM `pages`;
+/*!40000 ALTER TABLE `pages` DISABLE KEYS */;
+INSERT INTO `pages` (`id`, `name`, `header`) VALUES
+    (1, 'home', 'Quality Childcare in Radford<br><br>Opening 2015!');
+/*!40000 ALTER TABLE `pages` ENABLE KEYS */;
+
+
+-- Dumping structure for table rcd.page_content
+DROP TABLE IF EXISTS `page_content`;
+CREATE TABLE IF NOT EXISTS `page_content` (
+  `page` int(12) unsigned NOT NULL,
+  `position` int(12) unsigned NOT NULL DEFAULT '0',
+  `header` varchar(600) DEFAULT NULL,
+  `body` varchar(50000) NOT NULL,
+  `isHTML` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  UNIQUE KEY `page` (`page`,`position`),
+  CONSTRAINT `content_page` FOREIGN KEY (`page`) REFERENCES `pages` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table rcd.page_content: ~6 rows (approximately)
+DELETE FROM `page_content`;
+/*!40000 ALTER TABLE `page_content` DISABLE KEYS */;
+INSERT INTO `page_content` (`page`, `position`, `header`, `body`, `isHTML`) VALUES
+    (1, 0, '', '<img src="images/child.jpg" align="middle" />', 1),
+    (1, 1, 'Mission Statement', 'To develop and/or support excellent, nationally accredited child development program(s) in Radford that embodies the best practices of early childhood care and education. ', 0),
+    (1, 2, 'Request for Proposals', 'RCD Issued a request for proposals (<a href="/docs/RFP.pdf">RFP</a>) from qualified local, regional and national child care providers to open a new facility in Radford. A grant of up to $210,000 will be awarded. Visit the online RFP for details and deadlines.', 0),
+    (1, 3, 'Results of our Needs Assessment', 'In order to evaluate the need for a quality child care in Radford, we conducted a <a target="_blank" href="docs/NeedsAssessment.pdf">needs assessment</a> with members of the Radford community this year. We sought to measure the discrepancy between the current condition and the desired condition. We determined and documented a critical need in quality child care in Radford. Based on our research, 9 out of 10 children in Radford do not have access to a state-licensed child care.', 0),
+    (1, 4, NULL, '<div id="left-column">\r\n     <h3>Future Goals</h3>\r\n      <ul>\r\n             <li><a target="_blank" href="docs/pressrelease.pdf">Press Release</a></li>\r\n              <li><a target="_blank" href="docs/RCDC.png">Future Building</a></li>\r\n        </ul> \r\n</div>', 1),
+    (1, 5, NULL, '<div id="right-column">\r\n    <h3>Let us know of your interest now!</h3>\r\n    <p>\r\n        Email: <a href="mailto:radfordchilddevelopment@gmail.com">radfordchilddevelopment@gmail.com</a><br>\r\n        Phone: (434) 227-7196\r\n    </p>\r\n</div>', 1);
+/*!40000 ALTER TABLE `page_content` ENABLE KEYS */;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
