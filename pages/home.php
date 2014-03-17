@@ -1,6 +1,6 @@
-					<h1>Quality Childcare in Radford</h1>
-					<h1>Opening 2015!</h1>
-                	<img src="images/child.jpg" align="middle" />
+                    <h1>Quality Childcare in Radford</h1>
+                    <h1>Opening 2015!</h1>
+                    <img src="images/child.jpg" align="middle" />
                 	
                     <h3>Mission Statement</h3>
                     <p>

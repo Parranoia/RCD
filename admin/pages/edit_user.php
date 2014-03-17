@@ -1,4 +1,5 @@
 <?php
+
 function print_user($id, $username, $email, $privilege, $active, $errors)
 {
     echo "\t\t<h1>Edit User</h1>\n";
