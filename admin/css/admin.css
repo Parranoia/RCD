@@ -259,3 +259,9 @@ td > a
 {
     color: #4F5155;
 }
+
+.error
+{
+    font-size: 11px;
+    color: red;
+}
