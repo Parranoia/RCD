@@ -10,7 +10,14 @@ if (isset($_GET['p']))
 	if (file_exists($page))
 		include_once($page);
 	else
-		include_once($_SERVER['DOCUMENT_ROOT'] . '/pages/notFound.php');
+    {
+        include_once($_SERVER['DOCUMENT_ROOT'] . "/admin/include/Page.class.php");
+        $page = Page::buildPage($_GET['p'], $db);
+        if ($page)
+            $page->printPage();
+        else
+		  include_once($_SERVER['DOCUMENT_ROOT'] . '/pages/notFound.php');
+    }
 }
 else 
 	include_once($_SERVER['DOCUMENT_ROOT'] . '/pages/home.php');
