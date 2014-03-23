@@ -3,7 +3,6 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . '/include/config.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/include/functions.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/include/header.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . "/admin/include/Page.class.php");
 
 if (isset($_GET['p']))
 {
@@ -12,14 +11,14 @@ if (isset($_GET['p']))
 		include_once($page);
 	else
     {
-        $page = Page::buildPage($_GET['p'], $db);
+        $page = getPage($_GET['p'], $db);
         if ($page)
-            $page->printPage();
+            echo $page;
         else
 		  include_once($_SERVER['DOCUMENT_ROOT'] . '/pages/notFound.php');
     }
 }
 else 
-	Page::buildPage('home', $db)->printPage();
+	echo printPage('home', $db);
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/include/footer.php');

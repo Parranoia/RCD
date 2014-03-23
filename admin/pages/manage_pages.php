@@ -8,6 +8,8 @@ if (!empty($_POST))
         $query = 'UPDATE pages SET content = :content WHERE name = :name';
         $query_params = array(':content' => $_POST['content'],
                               ':name' => $_POST['page']);
+                              
+        echo $_POST['content'];
         try
         {
             $stmt = $db->prepare($query);
@@ -92,7 +94,7 @@ if (!empty($_POST))
     die();
 }
 
-$query = 'SELECT position, name, custom FROM pages ORDER BY position ASC';
+$query = 'SELECT position, name FROM pages ORDER BY position ASC';
 try
 {
     $stmt = $db->prepare($query);
@@ -154,7 +156,7 @@ foreach ($rows as $row)
                             page.toggleClass('active');
                             page.parent().toggleClass('active');
                             // Get rid of textarea and submit data
-                            var data = 'content=' + tinyMCE.activeEditor.getContent() + '&page=' + page.html().toLowerCase();
+                            var data = $.param({ page: page.html().toLowerCase(), content: tinyMCE.activeEditor.getContent() });
                             submitting = true;
                             $.ajax({
                                 url: '/admin/pages/manage_pages.php',
@@ -173,7 +175,7 @@ foreach ($rows as $row)
                             var active = $('.active p');
                             if (active.length)
                             {
-                                var data = 'content=' + tinyMCE.activeEditor.getContent() + '&page=' + active.html().toLowerCase();
+                                var data = $.param({ page: active.html().toLowerCase(), content: tinyMCE.activeEditor.getContent() });
                                 submitting = true;
                                 $.ajax({
                                     url: '/admin/pages/manage_pages.php',
@@ -186,8 +188,7 @@ foreach ($rows as $row)
                                 });
                             }
                             $('.active').removeClass('active');
-                            data = 'request_page=' + page.html().toLowerCase();
-                            submitting = true;
+                            var data = $.param({ request_page: page.html().toLowerCase() });submitting = true;
                             $.ajax({
                                 url: '/admin/pages/manage_pages.php',
                                 type: 'POST',
