@@ -124,10 +124,7 @@ foreach ($rows as $row)
 ?>
                 </div>
                 <div class="page_content">
-                    <form method="POST" action="/admin/pages/manage_pages.php">
-                        <textarea name="content"></textarea>
-                        <input type="submit" value="Update" /> 
-                    </form>
+                    <textarea name="content"></textarea>
                 </div>
                 <script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
                 <script>
