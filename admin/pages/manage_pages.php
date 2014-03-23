@@ -65,7 +65,7 @@ if (!empty($_POST))
     die();
 }
 
-$query = 'SELECT name, custom FROM pages ORDER BY position ASC';
+$query = 'SELECT position, name, custom FROM pages ORDER BY position ASC';
 try
 {
     $stmt = $db->prepare($query);
@@ -85,7 +85,7 @@ $rows = $stmt->fetchAll();
 foreach ($rows as $row)
 {
     echo "\t\t    <div class=\"page_info\">\n";
-    echo "\t\t\t<p>". ucfirst($row['name']) . "</p>\n";
+    echo "\t\t\t<p><a href=\"/admin/manage_page?page=" . $row['name'] . "\">" . ucfirst($row['name']) . "</a></p>\n";
     echo "\t\t\t<p>\n";
     echo "\t\t\t    <i class=\"fa fa-arrow-up fa-fw fa-lg\"></i>\n";
     echo "\t\t\t    <i class=\"fa fa-arrow-down fa-fw fa-lg\"></i>\n";

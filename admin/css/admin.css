@@ -9,7 +9,7 @@ body
 a
 {
     text-decoration: none;
-    color: #4B78A1;
+    color: #4F5155;
 }
 
 input, select
@@ -277,6 +277,15 @@ td > a
     border-bottom: 2px solid #C3C3C3;
     padding: 5px;
     margin-bottom: 5px;
+    transition: border-bottom-color 1s;
+    -webkit-transition: border-bottom-color 1s;
+    -moz-transition: border-bottom-color 1s;
+    -o-transition: border-bottom-color 1s;
+}
+
+.page_info:hover
+{
+    border-bottom-color: #393B3F;
 }
 
 .page_info p
@@ -306,5 +315,17 @@ td > a
 {
     cursor: pointer;
     cursor: hand;
-    color: #4F5155;
+    color: #393B3F;
 }
+
+
+.page_info a
+{
+    color: #777;
+}
+
+.page_info a:hover
+{
+    color: #393B3F;
+}
+
