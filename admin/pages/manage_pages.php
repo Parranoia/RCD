@@ -77,17 +77,13 @@ catch (PDOException $e)
 }
 
 $rows = $stmt->fetchAll();
-$pages_current = array();
-$pages_new = array();
 
 ?>
                 <h3>Reposition the order of the pages, or click on them to edit them</h3>
                 <div class="page_list">
 <?php
-$itr = 0;
 foreach ($rows as $row)
 {
-    $pages_current[$row['name']] = $itr++;
     echo "\t\t    <div class=\"page_info\">\n";
     echo "\t\t\t<p>". ucfirst($row['name']) . "</p>\n";
     echo "\t\t\t<p>\n";
@@ -96,7 +92,6 @@ foreach ($rows as $row)
     echo "\t\t\t</p>\n";
     echo "\t\t    </div>\n";    
 }
-$pages_new = $pages_current;
 ?>
                 </div>
                 <script>
