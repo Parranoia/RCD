@@ -19,6 +19,6 @@ if (isset($_GET['p']))
     }
 }
 else 
-	echo printPage('home', $db);
+	echo getPage('home', $db);
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/include/footer.php');
