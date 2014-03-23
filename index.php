@@ -10,9 +10,15 @@ if (isset($_GET['p']))
 	if (file_exists($page))
 		include_once($page);
 	else
-		include_once($_SERVER['DOCUMENT_ROOT'] . '/pages/notFound.php');
+    {
+        $page = getPage($_GET['p'], $db);
+        if ($page)
+            echo $page;
+        else
+		  include_once($_SERVER['DOCUMENT_ROOT'] . '/pages/notFound.php');
+    }
 }
 else 
-	include_once($_SERVER['DOCUMENT_ROOT'] . '/pages/home.php');
+	echo getPage('home', $db);
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/include/footer.php');

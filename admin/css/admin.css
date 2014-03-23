@@ -9,7 +9,7 @@ body
 a
 {
     text-decoration: none;
-    color: #4B78A1;
+    color: #4F5155;
 }
 
 input, select
@@ -29,7 +29,7 @@ input[type=text], input[type=password], input[type=email], select
     padding: 5px;
 }
 
-input[type=submit]
+input[type=submit], input[type=button]
 {
     border: none;   
     color: #EEE;
@@ -58,7 +58,6 @@ input:disabled
 	background: -o-linear-gradient(top, #3B3B3B, #212121);
 	background: -ms-linear-gradient(top, #3B3B3B, #212121);
 	background: linear-gradient(top, #3B3B3B, #212121);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3B3B3B', endColorstr='#212121',GradientType=0 );
 	text-align: center;
 	color: #F0F0F0;
 	padding: 5px;
@@ -208,7 +207,6 @@ li a i.fa
     color: #EBEBEB; 
     padding: 0 10px;  
     width: 100%;
-    /*width: 500px;*/
 }
 
 .parent_info p
@@ -264,4 +262,83 @@ td > a
 {
     font-size: 11px;
     color: red;
+}
+
+.page_list
+{
+    border-left: 3px solid #6B6B6B;
+    padding-left: 10px;
+    width: 195px;
+    margin-right: 150px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.page_info
+{
+    color: #777;
+    position: relative;
+    border-bottom: 2px solid #C3C3C3;
+    padding: 5px;
+    margin-bottom: 5px;
+    transition: border-bottom-color 1s;
+    -webkit-transition: border-bottom-color 1s;
+    -moz-transition: border-bottom-color 1s;
+    -o-transition: border-bottom-color 1s;
+}
+
+.page_info:hover
+{
+    border-bottom-color: #393B3F;
+}
+
+.page_info p
+{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.page_info > *:first-child
+{
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    top: -8px;
+    width: 150px;
+}
+
+.page_info p i
+{
+    display: block;
+    padding: 3px;
+    color: #A2A2A2;
+}
+
+.page_info p i:hover
+{
+    cursor: pointer;
+    cursor: hand;
+    color: #393B3F;
+}
+
+.page_info p:first-child:hover
+{
+    color: #393B3F;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.page_content
+{
+    opacity: 0;
+    display: inline-block;
+    width: 550px;
+    vertical-align: top;
+}
+
+.active
+{
+    color: #393B3F;
+    border-bottom-color: #393B3F;
 }

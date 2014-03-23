@@ -81,7 +81,7 @@ function print_interested_list($parents, $children)
                 <script>
                 $('.parent_info').click(function() {
                     $(this).next().slideToggle('slow'); 
-                    $(this).toggleClass('toggled');
-                    $(this).children('.fa').toggleClass('fa-chevron-right fa-chevron-down');
+                    $(this).toggleClass('toggled', 500);
+                    $(this).children('.fa').toggleClass('fa-chevron-right fa-chevron-down', 500);
                 });
                 </script>

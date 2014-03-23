@@ -14,7 +14,7 @@
     <body>
         <?php 
         	if (isset($_SESSION['user']))
-				print("<a class=\"right\" href=\"/logout\">" . "Logout (" . $_SESSION['user']['username'] . ")</a>\n");
+				print("<a class=\"right\" href=\"/logout\">Logout (" . $_SESSION['user']['username'] . ")</a>\n");
 		?>
         <div id="header">
             <h1>Radford Child Development Inc.</h1>
