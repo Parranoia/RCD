@@ -2,27 +2,12 @@
 if (!empty($_POST))
 {
     include_once($_SERVER['DOCUMENT_ROOT'] . '/include/config.php');
-    
-    $this_page = $_POST['this_page'];
-    if (!empty($_POST['prev_page']))
+
+    if (!empty($_POST['content']))
     {
-        $prev_page = $_POST['prev_page']; 
-        $query = 'UPDATE pages SET position = position + 1000 WHERE name = :name; UPDATE pages SET position = position + 1000 WHERE name = :prev_name';
-        $query_params = array(':name' => $this_page,
-                              ':prev_name' => $prev_page);
-                              
-        try
-        {
-            $stmt = $db->prepare($query);
-            $stmt->execute($query_params);
-        }
-        catch (PDOException $e)
-        {
-            die();
-        }
-        
-        $query = 'UPDATE pages SET position = position - 1000 - 1 WHERE name = :name; UPDATE pages SET position = position - 1000 + 1 WHERE name = :prev_name';
-        
+        $query = 'UPDATE pages SET content = :content WHERE name = :name';
+        $query_params = array(':content' => $_POST['content'],
+                              ':name' => $_POST['page']);
         try
         {
             $stmt = $db->prepare($query);
@@ -33,33 +18,75 @@ if (!empty($_POST))
             die();
         }
     }
-    else 
+
+    if (!empty($_POST['request_page']))
     {
-        $next_page = $_POST['next_page'];
-        $query = 'UPDATE pages SET position = position + 1000 WHERE name = :name; UPDATE pages SET position = position + 1000 WHERE name = :next_name';
-        $query_params = array(':name' => $this_page,
-                              ':next_name' => $next_page);
-                              
-        try
-        {
-            $stmt = $db->prepare($query);
-            $stmt->execute($query_params);
-        }
-        catch (PDOException $e)
-        {
-            die();
-        }
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/include/functions.php');
         
-        $query = 'UPDATE pages SET position = position - 1000 + 1 WHERE name = :name; UPDATE pages SET position = position - 1000 - 1 WHERE name = :next_name';
-        
-        try
+        $page = getPage($_POST['request_page'], $db);
+        if ($page)
+            echo $page;    }
+
+    if (!empty($_POST['this_page']))
+    {    
+        $this_page = $_POST['this_page'];
+        if (!empty($_POST['prev_page']))
         {
-            $stmt = $db->prepare($query);
-            $stmt->execute($query_params);
+            $prev_page = $_POST['prev_page']; 
+            $query = 'UPDATE pages SET position = position + 1000 WHERE name = :name; UPDATE pages SET position = position + 1000 WHERE name = :prev_name';
+            $query_params = array(':name' => $this_page,
+                                  ':prev_name' => $prev_page);
+                                  
+            try
+            {
+                $stmt = $db->prepare($query);
+                $stmt->execute($query_params);
+            }
+            catch (PDOException $e)
+            {
+                die();
+            }
+            
+            $query = 'UPDATE pages SET position = position - 1000 - 1 WHERE name = :name; UPDATE pages SET position = position - 1000 + 1 WHERE name = :prev_name';
+            
+            try
+            {
+                $stmt = $db->prepare($query);
+                $stmt->execute($query_params);
+            }
+            catch (PDOException $e)
+            {
+                die();
+            }
         }
-        catch (PDOException $e)
+        else 
         {
-            die();
+            $next_page = $_POST['next_page'];
+            $query = 'UPDATE pages SET position = position + 1000 WHERE name = :name; UPDATE pages SET position = position + 1000 WHERE name = :next_name';
+            $query_params = array(':name' => $this_page,
+                                  ':next_name' => $next_page);
+                                  
+            try
+            {
+                $stmt = $db->prepare($query);
+                $stmt->execute($query_params);
+            }
+            catch (PDOException $e)
+            {
+                die();
+            }
+            
+            $query = 'UPDATE pages SET position = position - 1000 + 1 WHERE name = :name; UPDATE pages SET position = position - 1000 - 1 WHERE name = :next_name';
+            
+            try
+            {
+                $stmt = $db->prepare($query);
+                $stmt->execute($query_params);
+            }
+            catch (PDOException $e)
+            {
+                die();
+            }
         }
     }        
     die();
@@ -85,7 +112,7 @@ $rows = $stmt->fetchAll();
 foreach ($rows as $row)
 {
     echo "\t\t    <div class=\"page_info\">\n";
-    echo "\t\t\t<p><a href=\"/admin/manage_page?page=" . $row['name'] . "\">" . ucfirst($row['name']) . "</a></p>\n";
+    echo "\t\t\t<p>" . ucfirst($row['name']) . "</p>\n";
     echo "\t\t\t<p>\n";
     echo "\t\t\t    <i class=\"fa fa-arrow-up fa-fw fa-lg\"></i>\n";
     echo "\t\t\t    <i class=\"fa fa-arrow-down fa-fw fa-lg\"></i>\n";
@@ -94,12 +121,96 @@ foreach ($rows as $row)
 }
 ?>
                 </div>
+                <div class="page_content">
+                    <form method="POST" action="/admin/pages/manage_pages.php">
+                        <textarea name="content"></textarea>
+                        <input type="submit" value="Update" /> 
+                    </form>
+                </div>
+                <script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
                 <script>
-                    var animating = false;
+                    tinymce.init({
+                        selector: 'textarea',
+                        height: 250,
+                        resize: 'both',
+                        content_css: '/css/default.css',
+                        plugins: [
+                            'advlist autolink lists link image charmap print preview anchor',
+                            'searchreplace visualblocks code fullscreen',
+                            'insertdatetime media table contextmenu paste moxiemanager'
+                        ],
+                        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+                    });
+                
+                    var submitting = false;
+                    $('.page_info p:first-child').on('click', function() {
+                        if (submitting)
+                            return;
+                            
+                        var page = $(this);
+                        var editor = $('.page_content');
+                        if (page.hasClass('active'))
+                        {
+                            page.toggleClass('active');
+                            page.parent().toggleClass('active');
+                            // Get rid of textarea and submit data
+                            var data = 'content=' + tinyMCE.activeEditor.getContent() + '&page=' + page.html().toLowerCase();
+                            submitting = true;
+                            $.ajax({
+                                url: '/admin/pages/manage_pages.php',
+                                type: 'POST',
+                                data: data,
+                                
+                                success: function(response) {
+                                    submitting = false;
+                                    editor.animate({ opacity: 0 }, 600);
+                                }
+                            });
+                        }
+                        else
+                        {
+                            // Save any other editor that might have been open
+                            var active = $('.active p');
+                            if (active.length)
+                            {
+                                var data = 'content=' + tinyMCE.activeEditor.getContent() + '&page=' + active.html().toLowerCase();
+                                submitting = true;
+                                $.ajax({
+                                    url: '/admin/pages/manage_pages.php',
+                                    type: 'POST',
+                                    data: data,
+                                    
+                                    success: function() {
+                                        submitting = false;
+                                    }
+                                });
+                            }
+                            $('.active').removeClass('active');
+                            data = 'request_page=' + page.html().toLowerCase();
+                            submitting = true;
+                            $.ajax({
+                                url: '/admin/pages/manage_pages.php',
+                                type: 'POST',
+                                data: data,
+                                
+                                success: function(response) {
+                                    submitting = false;
+                                    if (response.length) {
+                                        tinyMCE.activeEditor.setContent(response);
+                                        editor.animate({ opacity: 1 }, 600);
+                                        page.toggleClass('active');
+                                        page.parent().toggleClass('active');
+                                    }
+                                    else {
+                                        editor.animate({ opacity: 0 }, 600);
+                                        alert('This is a custom page and cannot be edited');
+                                    }
+                                }
+                            })
+                        }
+                    });
                     
-                    window.setInterval(function() {
-                        
-                    }, 3000);
+                    var animating = false;
                     
                     $('.page_info i').on('click', function() {
                         if (animating)

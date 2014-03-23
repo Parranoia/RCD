@@ -15,3 +15,24 @@ function get_privilege($num)
     else 
         return "Invalid";
 }
+
+function getPage($name, $db)
+{
+    $query = 'SELECT content FROM pages WHERE name = :name AND custom = 0';
+    $query_params = array(':name' => $name);
+    
+    try
+    {
+        $stmt = $db->prepare($query);
+        $stmt->execute($query_params);
+    }
+    catch (PDOException $e)
+    {
+        die();
+    }
+    $row = $stmt->fetch();
+    if (!$row)
+        return null;
+    
+    return $row['content'];
+}
