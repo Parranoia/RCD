@@ -263,3 +263,46 @@ td > a
     font-size: 11px;
     color: red;
 }
+
+.page_list
+{
+    border-left: 3px solid #6B6B6B;
+    padding-left: 10px;
+    width: 195px;
+}
+
+.page_info
+{
+    position: relative;
+    border-bottom: 2px solid #C3C3C3;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.page_info p
+{
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.page_info > *:nth-child(1)
+{
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    top: -8px;
+    width: 150px;
+}
+
+.page_info p i
+{
+    display: block;
+    padding: 3px;
+    color: #A2A2A2;
+}
+
+.page_info p i:hover
+{
+    color: #4F5155;
+}
