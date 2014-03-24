@@ -23,12 +23,24 @@
         <div id="wrapper">
             <div class="clear" id="nav">
                 <ul>
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/donate">Donate</a></li>
-                    <li><a href="/articles">Articles</a></li>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/interested">Interested</a></li>
-                    <?php if (!isset($_SESSION['user'])) echo "<li><a href=\"/login\">Login</a></li>"; ?>
+<?php
+$query = 'SELECT name FROM pages ORDER BY position ASC';
+try
+{
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+}
+catch (PDOException $e)
+{
+    die();
+}
+$rows = $stmt->fetchAll();
+foreach ($rows as $row)
+    echo "\t\t    <li><a href=\"/" . $row['name'] . "\">" . ucfirst($row['name']) . "</a></li>\n";
+
+if (!isset($_SESSION['user'])) 
+    echo "<li><a href=\"/login\">Login</a></li>";
+?>
                 </ul>
                 <a class="donate" target="_blank"
                    href="https://cfnrv.givebig.org/c/NRV/a/cfnrv-013/">Donate</a>
