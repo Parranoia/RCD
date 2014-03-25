@@ -212,7 +212,8 @@ li a i.fa
 .parent_info p
 {
     display: inline-block;
-    padding: 0 10px;
+    padding: 0 5px;
+    text-align: center;
 }
 
 
@@ -227,8 +228,8 @@ li a i.fa
 .child_info
 {
     display: none;
-    background: #3D3D3F;
-    color: #EBEBEB;
+    background: #C2C2C2;
+    color: #393B3F;
     padding: 5px 10px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
