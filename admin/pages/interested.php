@@ -5,7 +5,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/include/Child.class.php');
  * Parent has a full name, employer, email, and number of children
  * The child has a full name, dob, and a gender
  */
-$query = 'SELECT id, name, email, employer, num_children FROM interested_parents ORDER BY id ASC';
+$query = 'SELECT id, name, email, employer, num_children, phone_number FROM interested_parents ORDER BY id ASC';
 try
 {
     $stmt = $db->prepare($query);
@@ -45,9 +45,7 @@ function print_interested_list($parents, $children)
     foreach ($parents as $parent)
     {
         echo "\t\t<div class=\"parent_info\">\n";
-        echo "\t\t    <p>" . $parent['name'] . "</p>\n";
-        echo "\t\t    <p>" . $parent['email'] . "</p>\n";
-        if ($parent['employer']) echo "\t\t    <p>" . $parent['employer'] . "</p>\n";
+        echo "\t\t    <p>" . str_replace('and', '|', $parent['name']) . "</p>\n";
         if ($parent['num_children'] > 1)
             echo "\t\t    <p>" . $parent['num_children'] . " Children</p>\n";
         else 
@@ -56,6 +54,10 @@ function print_interested_list($parents, $children)
         echo "\t\t</div>\n";
         
         echo "\t\t<div class=\"child_info\">\n";
+        echo "\t\t    <p><b>Email</b>: " . $parent['email'] . "</p>\n";
+        echo "\t\t    <p><b>Phone</b>: " . $parent['phone_number'] . "</p>\n";
+        if ($parent['employer']) echo "\t\t    <p><b>Employer</b>: " . $parent['employer'] . "</p>\n";
+        echo "\t\t    <p><b>Children</b>:</p>\n";
         echo "\t\t    <ul>\n";
         
         $temp = $children[$parent['id']];        
@@ -84,4 +86,9 @@ function print_interested_list($parents, $children)
                     $(this).toggleClass('toggled', 500);
                     $(this).children('.fa').toggleClass('fa-chevron-right fa-chevron-down', 500);
                 });
+                for ( var i = 1; i < 5; i++) { 
+                    var largest = 0; 
+                    $('.parent_info p:nth-child(' + i + ')').each(function(idx, e) { largest = largest < $(e).outerWidth() ? $(e).outerWidth() : largest; });
+                    $('.parent_info p:nth-child(' + i + ')').each(function(idx, e) { $(e).css('width', largest); });
+                }
                 </script>

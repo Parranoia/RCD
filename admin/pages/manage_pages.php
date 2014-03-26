@@ -1,7 +1,13 @@
 <?php
 if (!empty($_POST))
-{
+{    
     include_once($_SERVER['DOCUMENT_ROOT'] . '/include/config.php');
+
+    if (empty($_SESSION['user']))
+        die();
+    else
+        if ($_SESSION['privilege'] === 0)
+            die();
 
     if (!empty($_POST['content']))
     {
@@ -127,6 +133,7 @@ foreach ($rows as $row)
                     <textarea name="content"></textarea>
                 </div>
                 <script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
+                <script type="text/javascript" src="/admin/js/manage_pages.js"></script>
                 <script>
                     tinymce.init({
                         selector: 'textarea',
@@ -139,139 +146,5 @@ foreach ($rows as $row)
                             'insertdatetime media table contextmenu paste moxiemanager'
                         ],
                         toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
-                    });
-                
-                    var submitting = false;
-                    $('.page_info p:first-child').on('click', function() {
-                        if (submitting)
-                            return;
-                            
-                        var page = $(this);
-                        var editor = $('.page_content');
-                        if (page.hasClass('active'))
-                        {
-                            page.toggleClass('active');
-                            page.parent().toggleClass('active');
-                            // Get rid of textarea and submit data
-                            var data = $.param({ page: page.html().toLowerCase(), content: tinyMCE.activeEditor.getContent() });
-                            submitting = true;
-                            $.ajax({
-                                url: '/admin/pages/manage_pages.php',
-                                type: 'POST',
-                                data: data,
-                                
-                                success: function(response) {
-                                    submitting = false;
-                                    editor.animate({ opacity: 0 }, 600);
-                                }
-                            });
-                        }
-                        else
-                        {
-                            // Save any other editor that might have been open
-                            var active = $('.active p');
-                            if (active.length)
-                            {
-                                var data = $.param({ page: active.html().toLowerCase(), content: tinyMCE.activeEditor.getContent() });
-                                submitting = true;
-                                $.ajax({
-                                    url: '/admin/pages/manage_pages.php',
-                                    type: 'POST',
-                                    data: data,
-                                    
-                                    success: function() {
-                                        submitting = false;
-                                    }
-                                });
-                            }
-                            $('.active').removeClass('active');
-                            var data = $.param({ request_page: page.html().toLowerCase() });submitting = true;
-                            $.ajax({
-                                url: '/admin/pages/manage_pages.php',
-                                type: 'POST',
-                                data: data,
-                                
-                                success: function(response) {
-                                    submitting = false;
-                                    if (response.length) {
-                                        tinyMCE.activeEditor.setContent(response);
-                                        editor.animate({ opacity: 1 }, 600);
-                                        page.toggleClass('active');
-                                        page.parent().toggleClass('active');
-                                    }
-                                    else {
-                                        editor.animate({ opacity: 0 }, 600);
-                                        alert('This is a custom page and cannot be edited');
-                                    }
-                                }
-                            })
-                        }
-                    });
-                    
-                    var animating = false;
-                    
-                    $('.page_info i').on('click', function() {
-                        if (animating)
-                            return;
-                            
-                        var container = $(this).parents('.page_info');
-                        var distance = container.outerHeight();
-                        
-                        var data;
-                        
-                        // Check if this div needs to go up or down
-                        if ($(this).hasClass('fa-arrow-up'))
-                        {
-                            var prev = $(container).prev();
-                            if (prev.length == 0)
-                                return;
-                            
-                            animating = true;
-                            $.when(container.animate({
-                                top: -distance - 5
-                            }, 600),
-                            prev.animate({
-                                top: distance + 5
-                            }, 600)).done(function() {
-                                prev.css('top', '0px');
-                                container.css('top', '0px');
-                                container.insertBefore(prev);
-                                animating = false; 
-                            });
-                            var thisPage = $(this).parent().prev().html().toLowerCase();
-                            var prevPage = $($(prev).children()[0]).html().toLowerCase();
-                            
-                            data = "this_page=" + thisPage + "&prev_page=" + prevPage;
-                        }
-                        else
-                        {
-                            var next= $(container).next();
-                            if (next.length == 0)
-                                return;
-                            
-                            animating = true;
-                            $.when(container.animate({
-                                top: distance + 5
-                            }, 600),
-                            next.animate({
-                                top: -distance - 5
-                            }, 600)).done(function() {
-                                next.css('top', '0px');
-                                container.css('top', '0px');
-                                container.insertAfter(next);
-                                animating = false; 
-                            });
-                            var thisPage = $(this).parent().prev().html().toLowerCase();
-                            var nextPage = $($(next).children()[0]).html().toLowerCase();
-                            
-                            data = "this_page=" + thisPage + "&next_page=" + nextPage;
-                        }
-                        
-                        $.ajax({
-                                url: "/admin/pages/manage_pages.php",
-                                type: "POST",
-                                data: data,
-                        });
-                        
                     });
                 </script>
