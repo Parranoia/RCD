@@ -1,7 +1,13 @@
 <?php
 if (!empty($_POST))
-{
+{    
     include_once($_SERVER['DOCUMENT_ROOT'] . '/include/config.php');
+
+    if (empty($_SESSION['user']))
+        die();
+    else
+        if ($_SESSION['privilege'] === 0)
+            die();
 
     if (!empty($_POST['content']))
     {

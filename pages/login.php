@@ -1,7 +1,7 @@
 <?php
 
 // If already logged in, redirect to the homepage
-if (isset($_SESSION['user']) || !empty($_SESSION['user']))
+if (!empty($_SESSION['user']))
 {
     redirect();
     die();
