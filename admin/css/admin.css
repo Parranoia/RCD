@@ -209,6 +209,11 @@ li a i.fa
     width: 100%;
 }
 
+.collapse
+{
+    width: auto;
+}
+
 .parent_info p
 {
     display: inline-block;
@@ -228,7 +233,7 @@ li a i.fa
 .child_info
 {
     display: none;
-    background: #C2C2C2;
+    box-shadow: 0px 6px 15px #363636;
     color: #393B3F;
     padding: 5px 10px;
     border-bottom-left-radius: 5px;
@@ -246,7 +251,12 @@ li a i.fa
 .toggled
 {
     border-bottom-left-radius: 0; 
-    border-bottom-right-radius: 0;  
+    border-bottom-right-radius: 0; 
+}
+
+.toggled + .child_info
+{
+    margin-bottom: 10px;
 }
 
 .center

@@ -49,8 +49,6 @@ if (!empty($_POST))
 			if (!empty($errors))
 				break;
 			
-			$test = new Child($name, $dob, $gender);
-			
 			$children[] = new Child($name, $dob, $gender);
 		}
 		
@@ -93,9 +91,9 @@ if (!empty($_POST))
                 }
                 catch (PDOException $e)
                 {
-                    die();
+                    die($e->getMessage());
                 }
-                 
+                
                 $query = 'SELECT id FROM interested_parents WHERE email = :email';
                  
                 $query_params = array(':email' => $_POST['email']);
