@@ -91,7 +91,7 @@ if (!empty($_POST))
                 }
                 catch (PDOException $e)
                 {
-                    die($e->getMessage());
+                    die();
                 }
                 
                 $query = 'SELECT id FROM interested_parents WHERE email = :email';
