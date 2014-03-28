@@ -117,7 +117,7 @@ if (!empty($_POST))
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = 'ssl';
     
-                $mail->Host = $email_config['email'];
+                $mail->Host = $email_config['host'];
                 $mail->Port = $email_config['port'];
                 $mail->Username = $email_config['username'];
                 $mail->Password = $email_config['password'];

@@ -45,7 +45,7 @@ function print_interested_list($parents, $children)
     foreach ($parents as $parent)
     {
         echo "\t\t<div class=\"parent_info\">\n";
-        echo "\t\t    <p>" . str_replace('and', '|', $parent['name']) . "</p>\n";
+        echo "\t\t    <p>" . str_replace(' and ', ' | ', $parent['name']) . "</p>\n";
         if ($parent['num_children'] > 1)
             echo "\t\t    <p>" . $parent['num_children'] . " Children</p>\n";
         else 
@@ -57,21 +57,19 @@ function print_interested_list($parents, $children)
         echo "\t\t    <p><b>Email</b>: " . $parent['email'] . "</p>\n";
         echo "\t\t    <p><b>Phone</b>: " . $parent['phone_number'] . "</p>\n";
         if ($parent['employer']) echo "\t\t    <p><b>Employer</b>: " . $parent['employer'] . "</p>\n";
-        echo "\t\t    <p><b>Children</b>:</p>\n";
-        echo "\t\t    <ul>\n";
         
-        $temp = $children[$parent['id']];        
+        $temp = $children[$parent['id']];
         foreach ($temp as $child)
         {
-            echo "\t\t\t<li>";
-            echo $child->getName() . "\n";
-            echo "\t\t\t    <ul>\n";
-            echo "\t\t\t\t<li>" . $child->getDob() . "</li>\n";
-            echo "\t\t\t\t<li>" . $child->getGender() . "</li>\n";
-            echo "\t\t\t    </ul>\n";
-            echo "\t\t\t<li>\n";            
+            echo "\t\t\t<div class=\"parent_info collapse\">\n";
+            echo "\t\t\t    <p>" . $child->getName() . "</p>\n";
+            echo "\t\t\t    <i class=\"fa fa-chevron-right\"></i>\n";
+            echo "\t\t\t</div>\n";
+            echo "\t\t\t<div class=\"child_info collapse\">\n";
+            echo "\t\t\t    <p>" . $child->getDob() . "</p>\n";
+            echo "\t\t\t    <p>" . $child->getGender() . "</p>\n";
+            echo "\t\t\t</div>";
         }
-        echo "\t\t    </ul>\n";
         echo "\t\t</div>\n";
     }
 }
@@ -86,9 +84,10 @@ function print_interested_list($parents, $children)
                     $(this).toggleClass('toggled', 500);
                     $(this).children('.fa').toggleClass('fa-chevron-right fa-chevron-down', 500);
                 });
-                for ( var i = 1; i < 5; i++) { 
+                for ( var i = 1; i < 3; i++) { 
                     var largest = 0; 
-                    $('.parent_info p:nth-child(' + i + ')').each(function(idx, e) { largest = largest < $(e).outerWidth() ? $(e).outerWidth() : largest; });
-                    $('.parent_info p:nth-child(' + i + ')').each(function(idx, e) { $(e).css('width', largest); });
+                    $('.parent_info:not(.collapse) p:nth-child(' + i + ')').each(function(idx, e) { largest = largest < $(e).outerWidth() ? $(e).outerWidth() : largest; });
+                    $('.parent_info:not(.collapse) p:nth-child(' + i + ')').each(function(idx, e) { $(e).css('width', largest); });
                 }
+                $('.collapse').css('width', 'auto');
                 </script>
