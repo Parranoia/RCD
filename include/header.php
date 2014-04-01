@@ -12,8 +12,15 @@
     </head>
     <body>
         <?php 
-        	if (isset($_SESSION['user']))
-				print("<a class=\"right\" href=\"/logout\">Logout (" . $_SESSION['user']['username'] . ")</a>\n");
+    	if (isset($_SESSION['user'])) {
+    	    print("<div class=\"right\">\n");
+			print("<a href=\"/logout\">Logout (" . $_SESSION['user']['username'] . ")</a>\n");
+            
+            if ($_SESSION['user']['privilege'] !== 0)
+                print(" | <a href=\"/admin\">Admin</a>\n");
+            
+            print("</div>");
+        }
 		?>
         <div id="header">
             <h1>Radford Child Development Inc.</h1>
