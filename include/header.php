@@ -24,7 +24,7 @@
 		?>
         <div id="header">
             <h1>Radford Child Development Inc.</h1>
-            <img src="/images/banner.jpg">
+            <img src="/assets/images/banner.jpg">
         </div>
         <div id="wrapper">
             <div class="clear" id="nav">
