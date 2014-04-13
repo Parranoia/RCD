@@ -2,13 +2,17 @@
 <html>
     <head>
         <title>Radford Child Development</title>
+        <meta charset="utf-8" />
+        <meta name="keywords" content="radford, radford childcare, childcare, child care, daycare, radford daycare, radford child development, daycare" />
+        <meta name="viewport" content="width=device-width, initial-scale=0.4, maximum-scale=1"/>
+        
         <link rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui.min.css">
         <link rel="stylesheet" type="text/css" href="/css/default.css">
+        <link rel="stylesheet" type="text/css" href="/css/mobile.css" media="screen and (max-width: 900px)" />
+        
         <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/js/main.js"></script>
-        <meta charset="utf-8">
-        <meta name="keywords" content="radford, radford childcare, childcare, child care, daycare, radford daycare, radford child development, daycare">
     </head>
     <body>
         <?php 

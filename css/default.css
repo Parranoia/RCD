@@ -71,7 +71,7 @@ iframe
 
 #nav ul li
 {
-    display: inline;  
+    display: inline-block;  
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -116,7 +116,6 @@ h1
     background-color: transparent;
     font-size: 24px;
     font-weight: bold;
-    /*padding: 14px 15px 10px 15px;*/
     text-align: center;
 }
 
