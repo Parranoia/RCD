@@ -39,7 +39,7 @@ if (!empty($_POST))
 			    $key = md5(uniqid(rand(), true));
                 
                 // First check to see if user has already tried to send a recovery link
-                $query = "SELECT `key`, `user` FROM forgot_password WHERE user = (SELECT id FROM users WHERE email = :email)";
+                $query = "SELECT `key_hash`, `user` FROM forgot_password WHERE user = (SELECT id FROM users WHERE email = :email)";
                 $query_params = array(':email' => $email);
                 
                 try
@@ -70,18 +70,18 @@ if (!empty($_POST))
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = 'ssl';
     
-                $mail->Host = 'rs14.websitehostserver.net';
-                $mail->Port = '465';
-                $mail->Username = 'noreply@radfordchilddevelopment.org';
-                $mail->Password = 'passwordhere';
-                $mail->From = 'noreply@radfordchilddevelopment.org';
+                $mail->Host = $email_config['host'];
+                $mail->Port = $email_config['port'];
+                $mail->Username = $email_config['username'];
+                $mail->Password = $email_config['password'];
+                $mail->From = $email_config['username'];
                 
                 $mail->FromName = 'Radford Child Development';
                 $mail->Subject = 'Radford Child Development | Password Recovery';
                 
                 $message = 
 'Click the link below to reset your password
-http://' . $_SERVER['SERVER_NAME'] . '/account/recover_password?email=' . $email . '&key=' . $key;
+http://' . $_SERVER['SERVER_NAME'] . '/account/recover_password?email=' . $email . '&key_hash=' . $key;
                 
                 $mail->Body = $message;
                 $mail->IsHTML(false);
@@ -92,7 +92,7 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/recover_password?email=' . $email
                  */
                  
                 if(!$mail->Send())
-                    echo 'Error sending email';
+                    echo '<div class="error center">Error sending email</div>';
                 else
                 {
                     $mail->ClearAddresses(); 
@@ -101,14 +101,14 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/recover_password?email=' . $email
                     // If they already have a record in the database, no need to send it again
                     if (!$row)
                     {
-                        $query = "INSERT INTO forgotten_password (`user`, `key`) VALUES ((SELECT id FROM users WHERE email = :email), :key)";
+                        $query = "INSERT INTO forgot_password (`user`, `key_hash`) VALUES ((SELECT id FROM users WHERE email = :email), :key_hash)";
                         $query_params = array(':email' => $email,
-                                              ':key' => $key);
-                                              
+                                              ':key_hash' => $key);
+                        
                         try
                         {
                             $stmt = $db->prepare($query);
-                            $result = $db->execute($query_params);
+                            $stmt->execute($query_params);
                         }
                         catch(PDOException $e)
                         {
@@ -129,5 +129,5 @@ http://' . $_SERVER['SERVER_NAME'] . '/account/recover_password?email=' . $email
                         <div class="forminfo">Please enter the email associated with your account</div>
                         <input type="text" name="email" placeholder="Email" />
 <?php if ($error) print ("\t\t\t<div class=\"error\">" . $error . "</div>\n"); ?>
-                        <input style="width:304px" type="submit" value="Submit" />
+                        <input type="submit" value="Submit" />
                     </form>

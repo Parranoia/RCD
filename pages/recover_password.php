@@ -1,5 +1,5 @@
 <?php
-if (!isset($_GET['email']) || !isset($_GET['key']))
+if (!isset($_GET['email']) || !isset($_GET['key_hash']))
 {
     redirect();
     die();
@@ -8,11 +8,11 @@ if (!isset($_GET['email']) || !isset($_GET['key']))
 $error = "";
 
 $email = $_GET['email'];
-$key = $_GET['key'];
+$key = $_GET['key_hash'];
 
-$query = "SELECT 1 FROM forgot_password WHERE user = (SELECT id FROM users WHERE email = :email) AND `key` = :key";
+$query = "SELECT 1 FROM forgot_password WHERE `user` = (SELECT id FROM users WHERE email = :email) AND `key_hash` = :key_hash";
 $query_params = array(':email' => $email,
-                      ':key' => $key);
+                      ':key_hash' => $key);
                       
  try
  {

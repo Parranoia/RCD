@@ -3,7 +3,6 @@ RewriteEngine On
  
 Options -Indexes
 
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{HTTP_HOST} ^www\.(.+) [NC]
 RewriteRule ^(.*) http://%1/$1 [R=301,NE,L]
 
@@ -25,6 +24,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?p=$1 [NC,QSA]
 
 # compress text, html, javascript, css, xml:
+<IfModule mod_deflate.c>
 AddOutputFilterByType DEFLATE text/plain
 AddOutputFilterByType DEFLATE text/html
 AddOutputFilterByType DEFLATE text/xml
@@ -34,6 +34,7 @@ AddOutputFilterByType DEFLATE application/xhtml+xml
 AddOutputFilterByType DEFLATE application/rss+xml
 AddOutputFilterByType DEFLATE application/javascript
 AddOutputFilterByType DEFLATE application/x-javascript
+</ifModule>
 
 <ifModule mod_headers.c>
 # Enable keep-alive

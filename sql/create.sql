@@ -17,12 +17,11 @@ DROP TABLE IF EXISTS `forgot_password`;
 CREATE TABLE IF NOT EXISTS `forgot_password` (
   `id` int(12) unsigned NOT NULL AUTO_INCREMENT,
   `user` int(12) unsigned NOT NULL DEFAULT '0',
-  `key` varchar(50) NOT NULL DEFAULT '0',
+  `key_hash` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user` (`user`),
   CONSTRAINT `user_forgot_pass` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 -- Data exporting was unselected.
 
 -- Dumping structure for table rcd.users

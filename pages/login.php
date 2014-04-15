@@ -78,8 +78,7 @@ if (!empty($_POST))
                 ?>
             	<a class="small" href="/register">Don't have an account?</a>
                 <input tabindex="1" type="text" autofocus="autofocus" maxlength="15" name="username" placeholder="Username" value="<?php echo $user ?>" />
-                <a class="small" href="#">Forgot Username?</a>
-                <input tabindex="2" type="password" maxlength="18" name="password" placeholder="Password" />
                 <a class="small" href="/account/forgot_password">Forgot Password?</a>
+                <input tabindex="2" type="password" maxlength="18" name="password" placeholder="Password" />
                 <input type="submit" value="Login" />
             </form>
