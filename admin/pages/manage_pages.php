@@ -144,9 +144,9 @@ foreach ($rows as $row)
                         gecko_spellcheck: true,
                         plugins: [
                             'advlist autolink lists link image charmap print preview anchor',
-                            'searchreplace visualblocks code fullscreen',
+                            'searchreplace visualblocks code fullscreen textcolor',
                             'insertdatetime media table contextmenu paste filemanager'
                         ],
-                        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+                        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor'
                     });
                 </script>

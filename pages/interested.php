@@ -180,6 +180,7 @@ if (!empty($_POST))
 					<input type="text" name="employer" placeholder="Current Employer" maxlength="100">
 					<span class="small">How many children are you interested in enrolling?<br></span>
 					<select id="num_children" name="num_children" required>
+						<option value="">Number of Children</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
 						<option value="3">3</option>
@@ -199,6 +200,7 @@ if (!empty($_POST))
 					<input type="text" name="child_name_1" placeholder="Child's full name" maxlength="50" required>
 					<input id="dob_1" type="text" class="dob" name="dob_1" placeholder="Date of Birth" maxlength="12" required>
 					<select name="gender_1" required>
+						<option value="">Gender</option>
 						<option value="Male">Male</option>
 						<option value="Female">Female</option>
 					</select>
