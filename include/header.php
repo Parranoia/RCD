@@ -8,7 +8,7 @@
         
         <link rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui.min.css">
         <link rel="stylesheet" type="text/css" href="/css/default.css">
-        <link rel="stylesheet" type="text/css" href="/css/mobile.css" media="screen and (max-width: 900px)" />
+        <link rel="stylesheet" type="text/css" href="/css/mobile.css" media="screen and (max-width: 800px)" />
         
         <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
