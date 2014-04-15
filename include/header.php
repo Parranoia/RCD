@@ -3,6 +3,7 @@
     <head>
         <title>Radford Child Development</title>
         <meta charset="utf-8" />
+        <meta name="description" content="Radford Child Development Inc. provides quality childcare in Radford, VA"
         <meta name="keywords" content="radford, radford childcare, childcare, child care, daycare, radford daycare, radford child development, daycare" />
         <meta name="viewport" content="width=device-width, initial-scale=0.4, maximum-scale=1"/>
         

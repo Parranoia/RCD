@@ -2,23 +2,43 @@
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/include/config.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/include/functions.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/include/header.php');
 
 if (isset($_GET['p']))
 {
-	$page = $_SERVER['DOCUMENT_ROOT'] . '/pages/' . $_GET['p'] . '.php';
-	if (file_exists($page))
-		include_once($page);
-	else
+    $response = pageExists($_GET['p'], $db);
+    if (!$response)
     {
-        $page = getPage($_GET['p'], $db);
-        if ($page)
-            echo $page;
+        echo $_GET['p'] . ' not found';
+        http_response_code(404);
+        die();
+    }
+    else 
+    {
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/include/header.php');
+        if (substr($response, strlen($response) - 4, 4) === '.php')
+            include_once($response);
         else
-		  include_once($_SERVER['DOCUMENT_ROOT'] . '/pages/notFound.php');
+            echo $response;
     }
 }
 else 
-	echo getPage('home', $db);
+{
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/include/header.php');
+    echo getPage('home', $db);
+}    
+function pageExists($p, $db)
+{
+	$page = $_SERVER['DOCUMENT_ROOT'] . '/pages/' . $p . '.php';
+	if (file_exists($page))
+		return $page;
+	else
+    {
+        $page = getPage($p, $db);
+        if ($page)
+            return $page;
+        else
+            return false;
+    }
+}
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/include/footer.php');

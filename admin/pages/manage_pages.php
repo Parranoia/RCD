@@ -140,10 +140,12 @@ foreach ($rows as $row)
                         height: 250,
                         resize: 'both',
                         content_css: '/css/default.css',
+                        browser_spellcheck : true,
+                        gecko_spellcheck: true,
                         plugins: [
                             'advlist autolink lists link image charmap print preview anchor',
-                            'searchreplace visualblocks code fullscreen spellchecker',
-                            'insertdatetime media table contextmenu paste moxiemanager'
+                            'searchreplace visualblocks code fullscreen',
+                            'insertdatetime media table contextmenu paste filemanager'
                         ],
                         toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
                     });
