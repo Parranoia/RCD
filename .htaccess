@@ -36,6 +36,9 @@ AddOutputFilterByType DEFLATE application/javascript
 AddOutputFilterByType DEFLATE application/x-javascript
 
 <ifModule mod_headers.c>
+# Enable keep-alive
+Header set Connection keep-alive
+
 # Turn on Expires and set default expires to 3 days
 ExpiresActive On
 ExpiresDefault A259200
