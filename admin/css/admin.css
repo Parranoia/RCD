@@ -239,8 +239,17 @@ li a i.fa
     box-shadow: 0px 6px 15px #363636;
     color: #393B3F;
     padding: 5px 10px;
+    
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-bottom-left-radius: 5px;
+    -o-border-bottom-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-bottom-right-radius: 5px;
+    -o-border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    
     margin-bottom: 2px;
     width: 100%;
 }
@@ -253,7 +262,14 @@ li a i.fa
 
 .toggled
 {
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-bottom-left-radius: 0;
+    -o-border-bottom-left-radius: 0;
     border-bottom-left-radius: 0; 
+    
+    -webkit-border-bottom-right-radius: 0;
+    -moz-border-bottom-right-radius: 0;
+    -o-border-bottom-right-radius: 0;
     border-bottom-right-radius: 0; 
 }
 

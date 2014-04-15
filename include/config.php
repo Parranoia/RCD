@@ -9,7 +9,6 @@
     $email_config['username'] = 'username@example.com';
     $email_config['password'] = 'password';
     
-
     $username = "root";
     $password = "justwhatever1";
     $host = "localhost";

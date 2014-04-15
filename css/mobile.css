@@ -1,25 +1,25 @@
 body
 {
-    background: #EBEBEB;
-    font: 14px normal Arial sans-serif;
-    color: #4F5155;
+    margin: 0;
+    font: 16px/20px normal Helvetica, Arial, sans-serif;
 }
 
-#header
+#nav
 {
-    max-width: 800px;
-    width: auto;
-    margin: 0 auto;
-    display: block;
-    text-align: center;
-    color: #4b78a1;
+    height: 58px;
 }
 
-#header img
+#nav ul li a
 {
-    margin-bottom: -15px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
+    font-size: 22px;
+}
+
+h1
+{
+    font-size: 30px;
+}
+
+h3
+{
+    font-size: 22px;
 }
