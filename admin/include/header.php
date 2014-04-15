@@ -7,9 +7,6 @@
         
         <link rel="stylesheet" type="text/css" href="/font_awesome/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
-        
-        <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
     </head>
     <body>
         <div class="wrapper">
