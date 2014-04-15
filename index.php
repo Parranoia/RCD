@@ -8,7 +8,6 @@ if (isset($_GET['p']))
     $response = pageExists($_GET['p'], $db);
     if (!$response)
     {
-        echo $_GET['p'] . ' not found';
         http_response_code(404);
         die();
     }
