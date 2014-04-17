@@ -132,8 +132,8 @@ foreach ($rows as $row)
                 <div class="page_content">
                     <textarea name="content"></textarea>
                 </div>
+                
                 <script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
-                <script type="text/javascript" src="/admin/js/manage_pages.js"></script>
                 <script>
                     tinymce.init({
                         selector: 'textarea',
