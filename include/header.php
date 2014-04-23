@@ -25,7 +25,14 @@
 		?>
         <div id="header">
             <h1>Radford Child Development Inc.</h1>
-            <img src="/assets/images/banner.jpg" alt="banner" width="800" height="264">
+<?php 
+    $dir = scandir($_SERVER['DOCUMENT_ROOT'] . '/assets/banner');
+    $path = '';
+    foreach ($dir as $entry)
+        if (!is_dir($entry))
+            $path = $entry;
+?>
+            <img src="/assets/banner/<?php echo $path ?>" alt="banner" width="800" height="264">
         </div>
         <div id="wrapper">
             <div class="clear" id="nav">

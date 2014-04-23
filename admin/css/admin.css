@@ -20,7 +20,7 @@ input, select
 
 input[type=text], input[type=password], input[type=email], select
 {
-    display:block;
+    display: block;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -o-border-radius: 5px;
@@ -363,7 +363,6 @@ td > a
 {
     opacity: 0;
     display: inline-block;
-    width: 550px;
     vertical-align: top;
 }
 
@@ -371,4 +370,14 @@ td > a
 {
     color: #393B3F;
     border-bottom-color: #393B3F;
+}
+
+.update_banner > input, select
+{
+    display: inline-block;
+}
+
+.update_banner > input
+{
+    width: 100px;
 }

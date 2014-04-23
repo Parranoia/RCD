@@ -98,3 +98,17 @@ $('.page_info i').on('click', function() {
     
     managePageAjax(data);    
 });
+
+// Updating the header image
+$(document).ready(function() {
+    $('.update_banner input[type=button]').click(function() {
+        var path = $('.update_banner select').val();
+        if (path) {
+            data = $.param({ update_banner: path });
+            
+            managePageAjax(data);
+            $('#bupdate').show('slow');
+            setTimeout(function() { $('#bupdate').hide('slow'); }, 2000);
+        }
+    });
+});

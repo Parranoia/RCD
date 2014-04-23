@@ -1,4 +1,16 @@
 <?php
+function deleteDir($dir) {  
+    $iterator = new RecursiveDirectoryIterator($dir);  
+    foreach (new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST) as $file) {  
+      if ($file->isDir()) {  
+         rmdir($file->getPathname());  
+      } else {  
+         unlink($file->getPathname());  
+      }  
+    }  
+    rmdir($dir);  
+}
+
 if (!empty($_POST))
 {    
     include_once($_SERVER['DOCUMENT_ROOT'] . '/include/config.php');
@@ -8,6 +20,17 @@ if (!empty($_POST))
     else
         if ($_SESSION['privilege'] === 0)
             die();
+        
+    if (!empty($_POST['update_banner']))
+    {
+        $source = $_SERVER['DOCUMENT_ROOT'] . '/assets/images/' . $_POST['update_banner'];
+        $dest = $_SERVER['DOCUMENT_ROOT'] . '/assets/banner/image.' . pathinfo($source, PATHINFO_EXTENSION);
+        
+        deleteDir($_SERVER['DOCUMENT_ROOT'] . '/assets/banner');
+        mkdir($_SERVER['DOCUMENT_ROOT'] . '/assets/banner');
+        
+        copy($source, $dest);
+    }
 
     if (!empty($_POST['content']))
     {
@@ -115,20 +138,37 @@ $rows = $stmt->fetchAll();
 
 ?>
                 <h3>Reposition the order of the pages, or click on them to edit them</h3>
-                <div class="page_list">
-<?php
-foreach ($rows as $row)
-{
-    echo "\t\t    <div class=\"page_info\">\n";
-    echo "\t\t\t<p>" . ucfirst($row['name']) . "</p>\n";
-    echo "\t\t\t<p>\n";
-    echo "\t\t\t    <i class=\"fa fa-arrow-up fa-fw fa-lg\"></i>\n";
-    echo "\t\t\t    <i class=\"fa fa-arrow-down fa-fw fa-lg\"></i>\n";
-    echo "\t\t\t</p>\n";
-    echo "\t\t    </div>\n";    
-}
-?>
+                <div style="display:inline-block">
+                    <div class="page_list">
+    <?php
+    foreach ($rows as $row)
+    {
+        echo "\t\t    <div class=\"page_info\">\n";
+        echo "\t\t\t<p>" . ucfirst($row['name']) . "</p>\n";
+        echo "\t\t\t<p>\n";
+        echo "\t\t\t    <i class=\"fa fa-arrow-up fa-fw fa-lg\"></i>\n";
+        echo "\t\t\t    <i class=\"fa fa-arrow-down fa-fw fa-lg\"></i>\n";
+        echo "\t\t\t</p>\n";
+        echo "\t\t    </div>\n";    
+    }
+    ?>
+                    </div>
+                    <h3>Update the main banner</h3>
+                    <div class="update_banner">
+                        <select>
+                            <option value="">Choose a new banner</option>
+    <?php
+        $files = scandir($_SERVER['DOCUMENT_ROOT'] . '/assets/images');
+        foreach ($files as $file)
+            if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/assets/images/' . $file)) 
+                echo "\t\t\t<option value=\"$file\">$file</option>\n";
+    ?>
+                        </select>
+                        <input type="button" value="Update"></button>
+                        <p id="bupdate" style="font-weight: bold; color: green; font-size: 16px; display: none">Banner updated!</p>
+                    </div>
                 </div>
+                
                 <div class="page_content">
                     <textarea name="content"></textarea>
                 </div>
@@ -137,6 +177,7 @@ foreach ($rows as $row)
                 <script>
                     tinymce.init({
                         selector: 'textarea',
+                        width: 600,
                         height: 250,
                         resize: 'both',
                         content_css: '/css/default.css',
