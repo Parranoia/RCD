@@ -101,8 +101,8 @@ $('.page_info i').on('click', function() {
 
 // Updating the header image
 $(document).ready(function() {
-    $('.update_banner input[type=button]').click(function() {
-        var path = $('.update_banner select').val();
+    $('#newbanner').click(function() {
+        var path = $('#newBanner').siblings('select').val();
         if (path) {
             data = $.param({ update_banner: path });
             
@@ -110,5 +110,58 @@ $(document).ready(function() {
             $('#bupdate').show('slow');
             setTimeout(function() { $('#bupdate').hide('slow'); }, 2000);
         }
+    });
+});
+
+// Delete page
+$(document).ready(function() {
+    $('#delPage').click(function() {
+        // Confirm with the user to delete this page
+        if (!window.confirm("Are you sure you want to delete this page?\nNote: Pages are not permanently deleted. It is possible to restore them"))
+            return;
+            
+        var page = $('#delPage').siblings('select').val();
+        if (page) {
+            data = $.param({ del_page: page });
+            
+            managePageAjax(data).done(function() {
+                location.reload(true);
+            });
+        } 
+    });
+});
+
+// Create new page
+$(document).ready(function() {
+    $('#newPage').click(function() {
+        // Delete any error message if one exists
+        if ($('#newPage').next())
+            $('#newPage').next().remove();
+            
+        var page = $('#newPage').siblings('input[type=text]').val();
+        if (!page.match(/^[a-z]{1,30}$/))
+            $('#newPage').after('<div class="error">Page name may only contain lowercase letters</div>');
+        else {
+            data = $.param({ new_page: page });
+            
+            managePageAjax(data).done(function() {
+                location.reload(true);
+            });
+        }
+    });
+});
+
+// Restore deleted pages
+$(document).ready(function() {
+    $('#resPage').click(function() {
+        var page = $('#resPage').siblings('select').val();
+
+        if (page) {
+            data = $.param({ restore_page: page });
+            
+            managePageAjax(data).done(function() {
+                location.reload(true);
+            });
+        }     
     });
 });

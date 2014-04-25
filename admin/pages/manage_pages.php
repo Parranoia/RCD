@@ -21,6 +21,142 @@ if (!empty($_POST))
         if ($_SESSION['privilege'] === 0)
             die();
         
+    if (!empty($_POST['restore_page']))
+    {
+        $query = 'SELECT position FROM pages ORDER BY position DESC LIMIT 1';
+        
+        try
+        {
+            $stmt = $db->prepare($query);
+            $stmt->execute();
+        }
+        catch(PDOException $e)
+        {
+            die();
+        }
+        $row = $stmt->fetch();
+        $position = (int)$row['position'] + 1;
+        
+        $query = 'SELECT content, custom FROM deleted_pages WHERE name = :name';
+        $query_params = array(':name' => $_POST['restore_page']);
+        
+        try
+        {
+            $stmt = $db->prepare($query);
+            $stmt->execute($query_params);
+        }
+        catch(PDOException $e)
+        {
+            die();
+        }
+        $row = $stmt->fetch();
+        
+        $query = 'INSERT INTO pages (name, position, content, custom) VALUES (:name, :position, :content, :custom)';
+        $query_params = array(':name' => $_POST['restore_page'],
+                              ':position' => $position,
+                              ':content' => $row['content'],
+                              ':custom' => $row['custom']);
+
+        try
+        {
+            $stmt = $db->prepare($query);
+            $stmt->execute($query_params);
+        }
+        catch(PDOException $e)
+        {
+            die();
+        }
+        
+        $query = 'DELETE FROM deleted_pages WHERE name = :name';
+        $query_params = array(':name' => $_POST['restore_page']);
+        
+        try
+        {
+            $stmt = $db->prepare($query);
+            $stmt->execute($query_params);
+        }
+        catch(PDOException $e)
+        {
+            die();
+        }
+    }
+        
+    if (!empty($_POST['new_page']))
+    {
+        $query = 'SELECT position FROM pages ORDER BY position DESC LIMIT 1';
+        
+        try
+        {
+            $stmt = $db->prepare($query);
+            $stmt->execute();
+        }
+        catch(PDOException $e)
+        {
+            die();
+        }
+        $row = $stmt->fetch();
+        
+        $query = 'INSERT INTO pages (name, position, content) VALUES (:name, :position, :content)';
+        $query_params = array(':name' => $_POST['new_page'],
+                              ':position' => ((int)$row['position']) + 1,
+                              ':content' => '<h3>Sample Text<h3>');
+        
+        try
+        {
+            $stmt = $db->prepare($query);
+            $stmt->execute($query_params);
+        }
+        catch(PDOException $e)
+        {
+            die();
+        }
+    }    
+        
+    if (!empty($_POST['del_page']))
+    {
+        $query = 'SELECT content, custom FROM pages WHERE name = :name';
+        $query_params = array(':name' => $_POST['del_page']);
+        
+        try
+        {
+            $stmt = $db->prepare($query);
+            $stmt->execute($query_params);
+        }    
+        catch(PDOException $e)
+        {
+            die();
+        }
+        $row = $stmt->fetch();
+        
+        $query = 'INSERT INTO deleted_pages (name, content, custom) VALUES (:name, :content, :custom)';
+        $query_params = array(':name' => $_POST['del_page'],
+                              ':content' => $row['content'],
+                              ':custom' => $row['custom']);
+         
+        try
+        {
+            $stmt = $db->prepare($query);
+            $stmt->execute($query_params);
+        }
+        catch(PDOException $e)
+        {
+            die();
+        }
+        
+        $query = 'DELETE FROM pages WHERE name = :name LIMIT 1';
+        $query_params = array(':name' => $_POST['del_page']);
+        
+        try
+        {
+            $stmt = $db->prepare($query);
+            $stmt->execute($query_params);
+        }
+        catch(PDOException $e)
+        {
+            die();
+        }
+    }
+        
     if (!empty($_POST['update_banner']))
     {
         $source = $_SERVER['DOCUMENT_ROOT'] . '/assets/images/' . $_POST['update_banner'];
@@ -56,7 +192,8 @@ if (!empty($_POST))
         
         $page = getPage($_POST['request_page'], $db);
         if ($page)
-            echo $page;    }
+            echo $page;    
+    }
 
     if (!empty($_POST['this_page']))
     {    
@@ -154,18 +291,55 @@ $rows = $stmt->fetchAll();
     ?>
                     </div>
                     <h3>Update the main banner</h3>
-                    <div class="update_banner">
+                    <div class="options">
                         <select>
                             <option value="">Choose a new banner</option>
-    <?php
-        $files = scandir($_SERVER['DOCUMENT_ROOT'] . '/assets/images');
-        foreach ($files as $file)
-            if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/assets/images/' . $file)) 
-                echo "\t\t\t<option value=\"$file\">$file</option>\n";
-    ?>
+<?php
+    $files = scandir($_SERVER['DOCUMENT_ROOT'] . '/assets/images');
+    foreach ($files as $file)
+        if (!is_dir($_SERVER['DOCUMENT_ROOT'] . '/assets/images/' . $file)) 
+            echo "\t\t\t    <option value=\"$file\">$file</option>\n";
+?>
                         </select>
-                        <input type="button" value="Update"></button>
+                        <input id="newBanner" type="button" value="Update">
                         <p id="bupdate" style="font-weight: bold; color: green; font-size: 16px; display: none">Banner updated!</p>
+                    </div>
+                    <h3>Add a page</h3>
+                    <div class="options">
+                        <input type="text" placeholder="Enter page name" />
+                        <input id="newPage" type="button" value="Add Page" />
+                    </div>
+                    <h3>Delete a page</h3>
+                    <div class="options">
+                        <select>
+                            <option value="">Choose page</option>
+<?php foreach ($rows as $row) echo "\t\t\t    <option value=\"" . $row['name'] . "\">" . ucfirst($row['name']) . "</option>\n"; ?>
+                        </select>
+                        <input id="delPage" type="button" value="Delete Page">
+                    </div>
+                    <h3>Restore a page</h3>
+                    <div class="options">
+                        <select>
+                            <option value="">Choose page</option>
+<?php
+$query = 'SELECT name FROM deleted_pages';
+
+try
+{
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+}
+catch(PDOException $e)
+{
+    die();
+}
+$del_pages = $stmt->fetchAll();
+
+foreach ($del_pages as $p)
+    echo "\t\t\t    <option value=\"" . $p['name'] . "\">" . ucfirst($p['name']) . "</option>\n";
+?>
+                        </select>
+                        <input id="resPage" type="button" value="Restore Page" />
                     </div>
                 </div>
                 

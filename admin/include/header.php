@@ -13,7 +13,7 @@
             <div class="nav">
             	<ul>
                     <li><a href="/admin/home"><i class="fa fa-home fa-fw"></i> Home</a></li>
-                    <?php if ($_SESSION['user']['privilege'] === 2) print('<li><a href="/admin/users"><i class="fa fa-users fa-fw"></i> Manage Users</a></li>'); ?>
+                    <?php if ($_SESSION['user']['privilege'] === 2) echo "<li><a href=\"/admin/users\"><i class=\"fa fa-users fa-fw\"></i> Manage Users</a></li>\n"; ?>
                     <li><a href="/admin/manage_pages"><i class="fa fa-file-text fa-fw"></i> Manage Pages</a></li>                   
                     <li><a href="/admin/interested"><i class="fa fa-list fa-fw"></i> View Interested List</a></li>
             	</ul>

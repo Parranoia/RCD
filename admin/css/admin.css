@@ -372,12 +372,13 @@ td > a
     border-bottom-color: #393B3F;
 }
 
-.update_banner > input, select
+.options > input, select
 {
     display: inline-block;
 }
 
-.update_banner > input
+.options > input
 {
-    width: 100px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
